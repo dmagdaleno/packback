@@ -1,0 +1,4 @@
+INSERT INTO "Usuario"(email, nome) VALUES('joaorosa@gmail.com', 'Joao Guimaraes Rosa');
+
+INSERT INTO "Endereco"(id_usuario, cidade, estado) VALUES(1, 'Cordisburgo', 'Minas Gerais');
+
