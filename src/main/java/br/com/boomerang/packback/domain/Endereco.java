@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 public class Endereco {
-	
+
 	@Id
     @SequenceGenerator(name = "endereco_seq", sequenceName = "endereco_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "endereco_seq")
