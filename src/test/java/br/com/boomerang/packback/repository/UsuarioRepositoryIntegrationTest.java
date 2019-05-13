@@ -30,7 +30,7 @@ public class UsuarioRepositoryIntegrationTest {
 
     @Test
     public void deveCadastrarUmUsuarioComUmEndereco() {
-        Usuario usuario = criaUmUsuarioComUmEndereco();
+        Usuario usuario = criaUsuarioComUmEndereco();
 
         repositorio.save(usuario);
 
@@ -73,14 +73,37 @@ public class UsuarioRepositoryIntegrationTest {
         assertThat(usuario.isEmpty()).isTrue();
     }
 
+    @Test
+    public void deveEditarUsuarioCadastrado() {
+        var usuario = criaUsuarioComUmEndereco();
+        var idUsuarioSalvo = repositorio.save(usuario).getId();
+
+        Usuario usuarioSalvo = encontraUsuarioPorId(idUsuarioSalvo);
+
+        assertThat(usuarioSalvo.getNome()).isEqualTo("João da Silva");
+
+        usuario.setId(idUsuarioSalvo);
+        usuario.setNome("Outro João");
+        repositorio.save(usuario);
+
+        var usuarioEditado = encontraUsuarioPorId(idUsuarioSalvo);
+
+        assertThat(usuarioEditado.getNome()).isEqualTo("Outro João");
+    }
+
+    public Usuario encontraUsuarioPorId(Long idUsuarioSalvo) {
+        var optionalUsuario = repositorio.findById(idUsuarioSalvo);
+        return optionalUsuario.get();
+    }
+
     public Usuario criaUsuarioComDoisEnderecos() {
-        Usuario usuario = criaUmUsuarioComUmEndereco();
+        Usuario usuario = criaUsuarioComUmEndereco();
         Endereco novoEndereco = new EnderecoBuilder().naRua("Nova Rua").numero(100).constroi();
         usuario.adicionaEndereco(novoEndereco);
         return usuario;
     }
 
-    public Usuario criaUmUsuarioComUmEndereco() {
+    public Usuario criaUsuarioComUmEndereco() {
         var endereco = new EnderecoBuilder()
                 .naRua("Rua Muito Bacana")
                 .numero(2)
