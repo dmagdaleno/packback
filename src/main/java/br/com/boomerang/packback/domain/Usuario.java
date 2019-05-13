@@ -3,7 +3,6 @@ package br.com.boomerang.packback.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
