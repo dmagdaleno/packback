@@ -15,6 +15,15 @@ public class TipoEmbalagem {
 
     private String material;
 
+    public TipoEmbalagem() {
+    }
+
+    public TipoEmbalagem(Long id, String descricao, String material) {
+        this.id = id;
+        this.descricao = descricao;
+        this.material = material;
+    }
+
     public Long getId() {
         return id;
     }
