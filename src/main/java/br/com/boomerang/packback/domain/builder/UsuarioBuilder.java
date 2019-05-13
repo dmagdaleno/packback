@@ -3,6 +3,8 @@ package br.com.boomerang.packback.domain.builder;
 import br.com.boomerang.packback.domain.Endereco;
 import br.com.boomerang.packback.domain.Usuario;
 
+import java.sql.ShardingKeyBuilder;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -14,7 +16,7 @@ public class UsuarioBuilder {
 	private String cpf = null;
 	private String razaoSocial = null;
 	private String cnpj = null;
-	private Collection<Endereco> enderecos = Collections.emptyList();
+	private Collection<Endereco> enderecos = new ArrayList<>();
 	
 	public UsuarioBuilder comId(Long id) {
 		this.id = id;
@@ -50,6 +52,11 @@ public class UsuarioBuilder {
 		this.enderecos = enderecos;
 		return this;
 	}
+
+	public UsuarioBuilder adicionaEndereco(Endereco endereco) {
+		this.enderecos.add(endereco);
+		return this;
+	}
 	
 	public Usuario constroi() {
 		Usuario usuario = new Usuario(email, nome, cpf, razaoSocial, cnpj);
@@ -61,5 +68,4 @@ public class UsuarioBuilder {
 
 		return usuario;
 	}
-	
 }
