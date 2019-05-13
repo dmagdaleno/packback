@@ -3,6 +3,8 @@ package br.com.boomerang.packback.domain;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -112,8 +114,8 @@ public class Usuario {
         this.cnpj = cnpj;
     }
 
-    public Collection<Endereco> getEnderecos() {
-		return enderecos;
+    public List<Endereco> getEnderecos() {
+		return List.copyOf(enderecos);
 	}
 
 	public void setEnderecos(Collection<Endereco> enderecos) {
