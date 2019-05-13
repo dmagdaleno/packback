@@ -20,6 +20,17 @@ public class Embalagem {
 
     private Double peso;
 
+    public Embalagem() {
+    }
+
+    public Embalagem(Long id, TipoEmbalagem tipo, String descricao, Double volume, Double peso) {
+        this.id = id;
+        this.tipo = tipo;
+        this.descricao = descricao;
+        this.volume = volume;
+        this.peso = peso;
+    }
+
     public Long getId() {
         return id;
     }
