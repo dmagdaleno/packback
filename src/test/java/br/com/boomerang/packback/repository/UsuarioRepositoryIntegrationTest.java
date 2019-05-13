@@ -91,9 +91,26 @@ public class UsuarioRepositoryIntegrationTest {
         assertThat(usuarioEditado.getNome()).isEqualTo("Outro João");
     }
 
+    @Test
+    public void deveRemoverUsuarioPorIdCadastrado() {
+        var usuario = criaUsuarioComUmEndereco();
+        var idUsuarioSalvo = repositorio.save(usuario).getId();
+
+        Usuario usuarioSalvo = encontraUsuarioPorId(idUsuarioSalvo);
+
+        assertThat(usuarioSalvo).isNotNull();
+
+        repositorio.deleteById(idUsuarioSalvo);
+
+        Usuario usuarioRemovido = encontraUsuarioPorId(idUsuarioSalvo);
+
+        assertThat(usuarioRemovido).isNull();
+
+    }
+
     public Usuario encontraUsuarioPorId(Long idUsuarioSalvo) {
         var optionalUsuario = repositorio.findById(idUsuarioSalvo);
-        return optionalUsuario.get();
+        return optionalUsuario.orElse(null);
     }
 
     public Usuario criaUsuarioComDoisEnderecos() {
