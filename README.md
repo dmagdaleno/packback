@@ -2,7 +2,16 @@
 
 API para cadastro e consultas de materiais recicláveis disponíveis para coleta do sistema PackBack.
 
-### Build e Execução
+## Build e Execução
+
+Informações necessárias para a construir e rodar o projeto.
+
+### Pré-requisitos
+
+- Docker 18.x
+- Java 12
+
+### Passos
 
 Construir imagem do banco:
 ```
