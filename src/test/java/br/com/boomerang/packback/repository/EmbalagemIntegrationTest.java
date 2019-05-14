@@ -1,6 +1,7 @@
 package br.com.boomerang.packback.repository;
 
 import br.com.boomerang.packback.domain.Embalagem;
+import br.com.boomerang.packback.domain.Material;
 import br.com.boomerang.packback.domain.TipoEmbalagem;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +33,7 @@ public class EmbalagemIntegrationTest {
 
     @Test
     public void deveCadastrarUmaEmbalagem() {
-        var tipo = new TipoEmbalagem(null, "Lata", "Metal");
+        var tipo = new TipoEmbalagem(null, "Lata", Material.METAL);
         var tipoSalvo = tipoEmbalagemRepositorio.save(tipo);
 
         var embalagem = new Embalagem(null, tipoSalvo, "Lata Coca-Cola", 350.0, 10.0);
