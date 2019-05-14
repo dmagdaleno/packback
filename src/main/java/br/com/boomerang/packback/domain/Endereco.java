@@ -1,5 +1,7 @@
 package br.com.boomerang.packback.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,8 +12,9 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "endereco_seq")
     private Long id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_usuario")
+	@JsonIgnore
 	private Usuario usuario;
 	
 	private String cep;

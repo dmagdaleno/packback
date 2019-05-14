@@ -24,7 +24,7 @@ public class Usuario {
 
     private String cnpj;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Collection<Endereco> enderecos;
     
     public Usuario() {
