@@ -29,7 +29,7 @@ public class UsuarioController {
 
     @GetMapping
     @Transactional
-    public ResponseEntity<Collection<Usuario>> listaTodos() {
+    public ResponseEntity<Collection<Usuario>> buscaTodos() {
         log.info("--> lista todos os usuarios...");
         Collection<Usuario> usuarios = repositorio.findAll();
         log.info("<-- usuarios encontrados {}", usuarios);
@@ -38,7 +38,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     @Transactional
-    public ResponseEntity<Usuario> encontraPorId(@PathVariable Long id) {
+    public ResponseEntity<Usuario> buscaPorId(@PathVariable Long id) {
         log.info("--> busca usuário com id {}...", id);
         Optional<Usuario> optionalUsuario = repositorio.findById(id);
 
