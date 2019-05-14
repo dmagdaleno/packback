@@ -1,6 +1,7 @@
 package br.com.boomerang.packback.service;
 
 import br.com.boomerang.packback.domain.*;
+import br.com.boomerang.packback.repository.EmbalagemRepository;
 import br.com.boomerang.packback.repository.MovimentacaoRepository;
 import br.com.boomerang.packback.repository.PontuacaoRepository;
 import br.com.boomerang.packback.repository.UsuarioRepository;
@@ -17,18 +18,28 @@ public class MovimentacaoService {
     private static final Logger log = LoggerFactory.getLogger(MovimentacaoService.class);
 
     private final MovimentacaoRepository repositorioDeMovimentacao;
+    private final EmbalagemRepository repositorioDeEmbalagem;
     private final PontuacaoRepository repositorioDePontuacao;
     private final UsuarioRepository repositorioDeUsuario;
 
     @Autowired
     public MovimentacaoService(
             MovimentacaoRepository repositorioDeMovimentacao,
+            EmbalagemRepository repositorioDeEmbalagem,
             PontuacaoRepository repositorioDePontuacao,
             UsuarioRepository repositorioDeUsuario) {
 
         this.repositorioDeMovimentacao = repositorioDeMovimentacao;
+        this.repositorioDeEmbalagem = repositorioDeEmbalagem;
         this.repositorioDePontuacao = repositorioDePontuacao;
         this.repositorioDeUsuario = repositorioDeUsuario;
+    }
+
+    public void movimenta(Long idEmbalagem, Long idUsuarioDe, Long idUsuarioPara) {
+        var embalagem = repositorioDeEmbalagem.findById(idEmbalagem).get();
+        var de = repositorioDeUsuario.findById(idUsuarioDe).get();
+        var para = repositorioDeUsuario.findById(idUsuarioPara).get();
+        movimenta(embalagem, de, para);
     }
 
     public void movimenta(Embalagem embalagem, Usuario de, Usuario para) {
