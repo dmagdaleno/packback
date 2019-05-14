@@ -27,7 +27,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.boomerang.packback.controller"))
-                .paths(regex("(/usuarios.*|embalagens.*)"))
+                .paths(regex("(/usuarios.*|/embalagens.*)"))
                 .build()
                 .apiInfo(metaData());
     }
@@ -37,9 +37,12 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         String url = "";
         String email = "diegommagdaleno@gmail.com";
         Contact contact = new Contact(name, url, email);
+
+        String desc = "API para cadastro e consultas de materiais recicláveis disponíveis para coleta do sistema PackBack.";
+
         return new ApiInfoBuilder()
                 .title("API Rest PackBack")
-                .description("\"API para cadastro e consultas de materiais recicláveis disponíveis para coleta do sistema PackBack.\"")
+                .description(desc)
                 .version(version)
                 .contact(contact)
                 .build();
