@@ -12,7 +12,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.transaction.Transactional;
 import java.net.URI;
 import java.util.Collection;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/usuarios")
@@ -31,7 +30,7 @@ public class UsuarioController {
     @Transactional
     public ResponseEntity<Collection<Usuario>> buscaTodos() {
         log.info("--> lista todos os usuarios...");
-        Collection<Usuario> usuarios = repositorio.findAll();
+        var usuarios = repositorio.findAll();
         log.info("<-- usuarios encontrados {}", usuarios);
         return ResponseEntity.ok(usuarios);
     }
@@ -40,7 +39,7 @@ public class UsuarioController {
     @Transactional
     public ResponseEntity<Usuario> buscaPorId(@PathVariable Long id) {
         log.info("--> busca usuário com id {}...", id);
-        Optional<Usuario> optionalUsuario = repositorio.findById(id);
+        var optionalUsuario = repositorio.findById(id);
 
         if(optionalUsuario.isPresent()) {
             var usuario = optionalUsuario.get();
@@ -56,7 +55,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Usuario> adiciona(@RequestBody Usuario usuario) {
         log.info("--> salvando usuario {}...", usuario);
-        Usuario usuarioSalvo = repositorio.save(usuario);
+        var usuarioSalvo = repositorio.save(usuario);
         log.info("<-- usuario salvo {}", usuarioSalvo);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
@@ -71,7 +70,7 @@ public class UsuarioController {
     public ResponseEntity<Usuario> altera(@PathVariable Long id, @RequestBody Usuario usuario) {
         log.info("--> alterando usuario com id {}...", id);
         usuario.setId(id);
-        Usuario usuarioAlterado = repositorio.save(usuario);
+        var usuarioAlterado = repositorio.save(usuario);
         log.info("<-- usuario alterado {}", usuarioAlterado);
 
         return ResponseEntity.ok(usuarioAlterado);
