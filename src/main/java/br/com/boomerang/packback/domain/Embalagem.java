@@ -98,4 +98,8 @@ public class Embalagem {
                 ", peso=" + peso +
                 '}';
     }
+
+    public Double calculaPontos() {
+        return this.getTipo().getMaterial().getRegra().calculaPontos(this);
+    }
 }

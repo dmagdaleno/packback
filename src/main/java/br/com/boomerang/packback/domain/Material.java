@@ -12,4 +12,8 @@ public enum Material {
     }
 
     private RegraCalculo regra;
+
+    public RegraCalculo getRegra() {
+        return regra;
+    }
 }
