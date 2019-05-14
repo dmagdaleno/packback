@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 
 @RestController
@@ -26,6 +27,7 @@ public class UsuarioController {
     }
 
     @GetMapping
+    @Transactional
     public ResponseEntity<Collection<Usuario>> listaTodos() {
         log.info("--> lista todos os usuarios...");
         Collection<Usuario> usuarios = repositorio.findAll();

@@ -188,9 +188,15 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", tipo=" + tipo + ", email=" + email + ", nome=" + nome + ", cpf=" + cpf
-				+ ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + "]";
+		return "Usuario{" +
+				"id=" + id +
+				", tipo=" + tipo +
+				", email='" + email + '\'' +
+				", nome='" + nome + '\'' +
+				", cpf='" + cpf + '\'' +
+				", razaoSocial='" + razaoSocial + '\'' +
+				", cnpj='" + cnpj + '\'' +
+				", enderecos=" + enderecos +
+				'}';
 	}
-
-
 }
