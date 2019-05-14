@@ -26,6 +26,9 @@ public class Usuario {
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private Collection<Endereco> enderecos;
+
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	private Collection<Pontuacao> pontuacao;
     
     public Usuario() {
     	this("Indefinido", "Indefinido", null, null, null);
@@ -46,16 +49,6 @@ public class Usuario {
 			this.tipo = TipoUsuario.CONSUMIDOR;
 		}
 	}
-
-	public void adicionaEndereco(Endereco endereco) {
-    	enderecos.add(endereco);
-    	endereco.setUsuario(this);
-    }
-    
-    public void removeEndereco(Endereco endereco) {
-    	enderecos.remove(endereco);
-    	endereco.setUsuario(null);
-    }
 
     public Long getId() {
         return id;
@@ -120,6 +113,35 @@ public class Usuario {
 	public void setEnderecos(Collection<Endereco> enderecos) {
 		for(Endereco endereco: enderecos)
 			adicionaEndereco(endereco);
+	}
+
+	public void adicionaEndereco(Endereco endereco) {
+		enderecos.add(endereco);
+		endereco.setUsuario(this);
+	}
+
+	public void removeEndereco(Endereco endereco) {
+		enderecos.remove(endereco);
+		endereco.setUsuario(null);
+	}
+
+	public List<Pontuacao> getPontuacao() {
+		return List.copyOf(pontuacao);
+	}
+
+	public void setPontuacao(Collection<Pontuacao> pontuacao) {
+    	for(var pontos: pontuacao)
+			this.adicionaPontuacao(pontos);
+	}
+
+	public void adicionaPontuacao(Pontuacao pontuacao) {
+		this.pontuacao.add(pontuacao);
+		pontuacao.setUsuario(this);
+	}
+
+	public void removePontuacao(Pontuacao pontuacao) {
+		this.pontuacao.remove(pontuacao);
+		pontuacao.setUsuario(null);
 	}
 
 	@Override
@@ -197,6 +219,7 @@ public class Usuario {
 				", razaoSocial='" + razaoSocial + '\'' +
 				", cnpj='" + cnpj + '\'' +
 				", enderecos=" + enderecos +
+				", pontuacao=" + pontuacao +
 				'}';
 	}
 }
