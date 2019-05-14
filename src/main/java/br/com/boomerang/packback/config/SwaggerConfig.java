@@ -27,7 +27,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("br.com.boomerang.packback.controller"))
-                .paths(regex("(/usuarios.*|/embalagens.*)"))
+                .paths(regex("(/usuarios.*|/embalagens.*|/movimentacoes.*)"))
                 .build()
                 .apiInfo(metaData());
     }
