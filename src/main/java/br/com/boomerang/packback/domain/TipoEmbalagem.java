@@ -13,12 +13,12 @@ public class TipoEmbalagem {
 
     private String descricao;
 
-    private String material;
+    private Material material;
 
     public TipoEmbalagem() {
     }
 
-    public TipoEmbalagem(Long id, String descricao, String material) {
+    public TipoEmbalagem(Long id, String descricao, Material material) {
         this.id = id;
         this.descricao = descricao;
         this.material = material;
@@ -40,11 +40,11 @@ public class TipoEmbalagem {
         this.descricao = descricao;
     }
 
-    public String getMaterial() {
+    public Material getMaterial() {
         return material;
     }
 
-    public void setMaterial(String material) {
+    public void setMaterial(Material material) {
         this.material = material;
     }
 
