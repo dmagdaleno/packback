@@ -21,6 +21,6 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
 
-logging:
-  level:
-    br.com.valid.bio.backofficeadjudicator: DEBUG
+info:
+  build:
+    version: ${version?:unknown}
