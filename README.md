@@ -27,3 +27,10 @@ Rodar a aplicação:
 ```
 ./gradlew bootRun
 ```
+
+## Uso
+
+Documentação da API:
+```
+http://localhost:8080/packback/api/swagger-ui.html
+```
