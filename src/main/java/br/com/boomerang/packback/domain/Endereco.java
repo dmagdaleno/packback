@@ -124,7 +124,7 @@ public class Endereco {
 	
 	@Override
 	public String toString() {
-		return "Endereco [id=" + id + ", usuario=" + usuario + ", cep=" + cep + ", rua=" + rua + ", numero=" + numero
+		return "Endereco [id=" + id + ", usuario.id=" + usuario.getId() + ", cep=" + cep + ", rua=" + rua + ", numero=" + numero
 				+ ", bairro=" + bairro + ", cidade=" + cidade + ", estado=" + estado + ", pais=" + pais + "]";
 	}
 }
