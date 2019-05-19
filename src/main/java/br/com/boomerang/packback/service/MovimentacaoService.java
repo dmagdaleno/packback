@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 public class MovimentacaoService {
@@ -39,19 +40,33 @@ public class MovimentacaoService {
         this.repositorioDeUsuario = repositorioDeUsuario;
     }
 
-    public Iterable<Movimentacao> buscaTodas(){
+    public List<Movimentacao> buscaTodas(){
         return repositorioDeMovimentacao.findAll();
     }
 
-    public void movimenta(Long idEmbalagem, Long idUsuarioOrigem, Long idUsuarioDestino) {
+    public Movimentacao buscaPorId(Long id){
+        log.info("--> busca movimentacao com o id {}...", id);
+
+        var movimentacao = repositorioDeMovimentacao.findById(id);
+
+        if(movimentacao.isPresent()) {
+            log.info("<-- movimentacao com o id {} encontrada", id);
+            return movimentacao.get();
+        }
+        else {
+            log.info("<-- movimentacao com o id {} não encontrada", id);
+            return null;
+        }
+    }
+
+    public Movimentacao movimenta(Long idEmbalagem, Long idUsuarioOrigem, Long idUsuarioDestino) {
         var embalagem = repositorioDeEmbalagem.findById(idEmbalagem).get();
         var de = repositorioDeUsuario.findById(idUsuarioOrigem).get();
         var para = repositorioDeUsuario.findById(idUsuarioDestino).get();
-        movimenta(embalagem, de, para);
+        return movimenta(embalagem, de, para);
     }
 
-    @Transactional
-    public void movimenta(Embalagem embalagem, Usuario origem, Usuario destino) {
+    public Movimentacao movimenta(Embalagem embalagem, Usuario origem, Usuario destino) {
         log.info("--> movimentando embalagem {} de {} para {}...", embalagem, origem, destino);
 
         var movimentacao = new MovimentacaoBuilder().movimenta(embalagem).de(origem).para(destino).constroi();
@@ -63,8 +78,10 @@ public class MovimentacaoService {
             repositorioDeUsuario.save(origem);
         }
 
-        repositorioDeMovimentacao.save(movimentacao);
+        var movimentacaoSalva = repositorioDeMovimentacao.save(movimentacao);
 
         log.info("<-- registro da movimentação da embalagem {} de {} para {} concluído", embalagem, origem, destino);
+
+        return movimentacaoSalva;
     }
 }

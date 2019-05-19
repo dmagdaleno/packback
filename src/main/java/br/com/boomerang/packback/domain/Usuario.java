@@ -1,5 +1,7 @@
 package br.com.boomerang.packback.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,10 +52,12 @@ public class Usuario {
 		}
 	}
 
+	@JsonIgnore
 	public boolean isTipoConsumidor() {
     	return this.getTipo().equals(TipoUsuario.CONSUMIDOR);
 	}
 
+	@JsonIgnore
 	public boolean isNotTipoConsumidor() {
 		return !this.isTipoConsumidor();
 	}
