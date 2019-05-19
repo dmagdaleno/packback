@@ -5,34 +5,40 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-public class MovimentacaoOld {
+public class Movimentacao {
 
     @Id
     @SequenceGenerator(name = "movimentacao_seq", sequenceName = "pontuacao_usuario_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pontuacao_usuario_seq")
     private Long id;
 
-    private TipoMovimentacao tipo;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_usuario_origem", referencedColumnName = "id")
+    private Usuario usuarioOrigem;
 
-    @OneToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_usuario_destino", referencedColumnName = "id")
+    private Usuario usuarioDestino;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "id_embalagem")
     private Embalagem embalagem;
 
     private LocalDateTime data;
 
-    public MovimentacaoOld() {
+    public Movimentacao() {
     }
 
-    public MovimentacaoOld(Long id, TipoMovimentacao tipo, Usuario usuario, Embalagem embalagem, LocalDateTime data) {
+    public Movimentacao(Long id, Usuario usuarioOrigem, Usuario usuarioDestino, Embalagem embalagem, LocalDateTime data) {
         this.id = id;
-        this.tipo = tipo;
-        this.usuario = usuario;
+        this.usuarioOrigem = usuarioOrigem;
+        this.usuarioDestino = usuarioDestino;
         this.embalagem = embalagem;
         this.data = data;
+    }
+
+    public boolean deveSerPontuada() {
+        return usuarioOrigem.isTipoConsumidor() && usuarioDestino.isNotTipoConsumidor();
     }
 
     public Long getId() {
@@ -43,20 +49,20 @@ public class MovimentacaoOld {
         this.id = id;
     }
 
-    public TipoMovimentacao getTipo() {
-        return tipo;
+    public Usuario getUsuarioOrigem() {
+        return usuarioOrigem;
     }
 
-    public void setTipo(TipoMovimentacao tipo) {
-        this.tipo = tipo;
+    public void setUsuarioOrigem(Usuario usuarioOrigem) {
+        this.usuarioOrigem = usuarioOrigem;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public Usuario getUsuarioDestino() {
+        return usuarioDestino;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
+    public void setUsuarioDestino(Usuario usuarioDestino) {
+        this.usuarioDestino = usuarioDestino;
     }
 
     public Embalagem getEmbalagem() {
@@ -79,25 +85,25 @@ public class MovimentacaoOld {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MovimentacaoOld that = (MovimentacaoOld) o;
+        Movimentacao that = (Movimentacao) o;
         return Objects.equals(id, that.id) &&
-                tipo == that.tipo &&
-                Objects.equals(usuario, that.usuario) &&
+                Objects.equals(usuarioOrigem, that.usuarioOrigem) &&
+                Objects.equals(usuarioDestino, that.usuarioDestino) &&
                 Objects.equals(embalagem, that.embalagem) &&
                 Objects.equals(data, that.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, tipo, usuario, embalagem, data);
+        return Objects.hash(id, usuarioOrigem, usuarioDestino, embalagem, data);
     }
 
     @Override
     public String toString() {
-        return "MovimentacaoOld{" +
+        return "Movimentacao{" +
                 "id=" + id +
-                ", tipo=" + tipo +
-                ", usuario=" + usuario +
+                ", usuarioOrigem=" + usuarioOrigem +
+                ", usuarioDestino=" + usuarioDestino +
                 ", embalagem=" + embalagem +
                 ", data=" + data +
                 '}';
