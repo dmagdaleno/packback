@@ -1,0 +1,9 @@
+{
+  "id": null,
+  "descricao": "Lata Coca-Cola",
+  "volume": 350.0,
+  "peso": 10.0,
+  "tipo": {
+    "id": 4
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "id": null,
+  "nome": "Dono da Empresa",
+  "tipo": "PRODUTOR",
+  "email": "produtor@empresa.com.br",
+  "cpf": "00100200345",
+  "cnpj": "001002003000145",
+  "razaoSocial": "Nome da Empresa",
+  "enderecos": [
+    {
+      "id": null,
+      "cep": "00102-003",
+      "rua": "Nome da Rua",
+      "numero": 720,
+      "bairro": "Nome do Bairro",
+      "cidade": "Nome da Cidade",
+      "estado": "Nome do Estado",
+      "pais": "BR"
+    }
+  ],
+  "pontuacao": []
+}

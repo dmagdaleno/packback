@@ -1,0 +1,22 @@
+{
+  "id": null,
+  "nome": "Nome do Consumidor",
+  "tipo": "CONSUMIDOR",
+  "email": "consumidor@gmail.com",
+  "cpf": "00100200304",
+  "cnpj": null,
+  "razaoSocial": null,
+  "enderecos": [
+    {
+      "id": null,
+      "cep": "00102-003",
+      "rua": "Nome da Rua",
+      "numero": 270,
+      "bairro": "Nome do Bairro",
+      "cidade": "Nome da Cidade",
+      "estado": "Nome do Estado",
+      "pais": "BR"
+    }
+  ],
+  "pontuacao": []
+}
