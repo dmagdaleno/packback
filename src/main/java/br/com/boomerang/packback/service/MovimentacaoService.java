@@ -1,6 +1,10 @@
 package br.com.boomerang.packback.service;
 
-import br.com.boomerang.packback.domain.*;
+import br.com.boomerang.packback.domain.Embalagem;
+import br.com.boomerang.packback.domain.Movimentacao;
+import br.com.boomerang.packback.domain.Pontuacao;
+import br.com.boomerang.packback.domain.Usuario;
+import br.com.boomerang.packback.domain.builder.MovimentacaoBuilder;
 import br.com.boomerang.packback.repository.EmbalagemRepository;
 import br.com.boomerang.packback.repository.MovimentacaoRepository;
 import br.com.boomerang.packback.repository.PontuacaoRepository;
@@ -10,8 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
+import javax.transaction.Transactional;
 
 @Service
 public class MovimentacaoService {
@@ -40,33 +43,28 @@ public class MovimentacaoService {
         return repositorioDeMovimentacao.findAll();
     }
 
-    public void movimenta(Long idEmbalagem, Long idUsuarioDe, Long idUsuarioPara) {
+    public void movimenta(Long idEmbalagem, Long idUsuarioOrigem, Long idUsuarioDestino) {
         var embalagem = repositorioDeEmbalagem.findById(idEmbalagem).get();
-        var de = repositorioDeUsuario.findById(idUsuarioDe).get();
-        var para = repositorioDeUsuario.findById(idUsuarioPara).get();
+        var de = repositorioDeUsuario.findById(idUsuarioOrigem).get();
+        var para = repositorioDeUsuario.findById(idUsuarioDestino).get();
         movimenta(embalagem, de, para);
     }
 
-    public void movimenta(Embalagem embalagem, Usuario de, Usuario para) {
-        log.info("--> movimentando embalagem {} de {} para {}...", embalagem, de, para);
+    @Transactional
+    public void movimenta(Embalagem embalagem, Usuario origem, Usuario destino) {
+        log.info("--> movimentando embalagem {} de {} para {}...", embalagem, origem, destino);
 
-        var movimentaDe = new Movimentacao(null, TipoMovimentacao.DE, de, embalagem, LocalDateTime.now());
-        var movimentaPara = new Movimentacao(null, TipoMovimentacao.PARA, para, embalagem, LocalDateTime.now());
+        var movimentacao = new MovimentacaoBuilder().movimenta(embalagem).de(origem).para(destino).constroi();
 
-        if(deveCalcularPontuacao(de, para)) {
-            var pontuacao = new Pontuacao(null, de, embalagem.calculaPontos());
-            de.adicionaPontuacao(pontuacao);
+        if(movimentacao.deveSerPontuada()) {
+            var pontuacao = new Pontuacao(null, origem, embalagem.calculaPontos());
+            origem.adicionaPontuacao(pontuacao);
             repositorioDePontuacao.save(pontuacao);
-            repositorioDeUsuario.save(de);
+            repositorioDeUsuario.save(origem);
         }
 
-        repositorioDeMovimentacao.save(movimentaDe);
-        repositorioDeMovimentacao.save(movimentaPara);
+        repositorioDeMovimentacao.save(movimentacao);
 
-        log.info("<-- registro da movimentação da embalagem {} de {} para {} concluído", embalagem, de, para);
-    }
-
-    private boolean deveCalcularPontuacao(Usuario de, Usuario para) {
-        return de.getTipo().equals(TipoUsuario.CONSUMIDOR) && para.getTipo().equals(TipoUsuario.PRODUTOR);
+        log.info("<-- registro da movimentação da embalagem {} de {} para {} concluído", embalagem, origem, destino);
     }
 }
