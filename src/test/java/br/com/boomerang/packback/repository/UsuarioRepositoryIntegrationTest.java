@@ -2,8 +2,7 @@ package br.com.boomerang.packback.repository;
 
 import br.com.boomerang.packback.domain.Endereco;
 import br.com.boomerang.packback.domain.Usuario;
-import br.com.boomerang.packback.domain.builder.EnderecoBuilder;
-import br.com.boomerang.packback.domain.builder.UsuarioBuilder;
+import br.com.boomerang.packback.domain.builder.UsuarioBuilderUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +31,7 @@ public class UsuarioRepositoryIntegrationTest {
     @Test
     @Transactional
     public void deveCadastrarUsuarioComUmEndereco() {
-        Usuario usuario = criaUsuarioComUmEndereco();
+        Usuario usuario = UsuarioBuilderUtils.criaUsuarioConsumidor();
 
         repositorio.save(usuario);
 
@@ -54,7 +53,7 @@ public class UsuarioRepositoryIntegrationTest {
     @Test
     @Transactional
     public void deveCadastrarUsuarioComDoisEnderecos() {
-        Usuario usuario = criaUsuarioComDoisEnderecos();
+        Usuario usuario = UsuarioBuilderUtils.criaUsuarioComDoisEnderecos();
 
         repositorio.save(usuario);
 
@@ -78,7 +77,7 @@ public class UsuarioRepositoryIntegrationTest {
 
     @Test
     public void deveEditarUsuarioCadastrado() {
-        var usuario = criaUsuarioComUmEndereco();
+        var usuario = UsuarioBuilderUtils.criaUsuarioConsumidor();
         var idUsuarioSalvo = repositorio.save(usuario).getId();
 
         Usuario usuarioSalvo = encontraUsuarioPorId(idUsuarioSalvo);
@@ -96,7 +95,7 @@ public class UsuarioRepositoryIntegrationTest {
 
     @Test
     public void deveRemoverUsuarioPorIdCadastrado() {
-        var usuario = criaUsuarioComUmEndereco();
+        var usuario = UsuarioBuilderUtils.criaUsuarioConsumidor();
         var idUsuarioSalvo = repositorio.save(usuario).getId();
 
         Usuario usuarioSalvo = encontraUsuarioPorId(idUsuarioSalvo);
@@ -114,25 +113,5 @@ public class UsuarioRepositoryIntegrationTest {
     public Usuario encontraUsuarioPorId(Long idUsuarioSalvo) {
         var optionalUsuario = repositorio.findById(idUsuarioSalvo);
         return optionalUsuario.orElse(null);
-    }
-
-    public Usuario criaUsuarioComDoisEnderecos() {
-        Usuario usuario = criaUsuarioComUmEndereco();
-        Endereco novoEndereco = new EnderecoBuilder().naRua("Nova Rua").numero(100).constroi();
-        usuario.adicionaEndereco(novoEndereco);
-        return usuario;
-    }
-
-    public Usuario criaUsuarioComUmEndereco() {
-        var endereco = new EnderecoBuilder()
-                .naRua("Rua Muito Bacana")
-                .numero(2)
-                .constroi();
-
-        return new UsuarioBuilder()
-                .comNome("João da Silva")
-                .comCpf("00100200304")
-                .adicionaEndereco(endereco)
-                .constroi();
     }
 }
