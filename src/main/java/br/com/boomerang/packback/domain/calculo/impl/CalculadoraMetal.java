@@ -1,5 +1,6 @@
-package br.com.boomerang.packback.domain;
+package br.com.boomerang.packback.domain.calculo.impl;
 
+import br.com.boomerang.packback.domain.Embalagem;
 import br.com.boomerang.packback.domain.calculo.RegraCalculo;
 
 public class CalculadoraMetal implements RegraCalculo {

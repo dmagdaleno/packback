@@ -1,5 +1,11 @@
 package br.com.boomerang.packback.domain;
 
+import br.com.boomerang.packback.domain.calculo.RegraCalculo;
+import br.com.boomerang.packback.domain.calculo.impl.CalculadoraMetal;
+import br.com.boomerang.packback.domain.calculo.impl.CalculadoraPapel;
+import br.com.boomerang.packback.domain.calculo.impl.CalculadoraPlastico;
+import br.com.boomerang.packback.domain.calculo.impl.CalculadoraVidro;
+
 public enum Material {
 
     METAL(new CalculadoraMetal()),
