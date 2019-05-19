@@ -50,6 +50,14 @@ public class Usuario {
 		}
 	}
 
+	public boolean isTipoConsumidor() {
+    	return this.getTipo().equals(TipoUsuario.CONSUMIDOR);
+	}
+
+	public boolean isNotTipoConsumidor() {
+		return !this.isTipoConsumidor();
+	}
+
     public Long getId() {
         return id;
     }
