@@ -1,5 +1,7 @@
 package br.com.boomerang.packback.domain;
 
+import br.com.boomerang.packback.domain.calculo.RegraCalculo;
+
 public class CalculadoraPapel implements RegraCalculo {
     @Override
     public Double calculaPontos(Embalagem embalagem) {
