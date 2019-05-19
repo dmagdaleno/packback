@@ -38,7 +38,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         String email = "diegommagdaleno@gmail.com";
         Contact contact = new Contact(name, url, email);
 
-        String desc = "API para cadastro e consultas de materiais recicláveis disponíveis para coleta do sistema PackBack.";
+        String desc = "API para registro e consultas de materiais recicláveis disponíveis para coleta do sistema PackBack.";
 
         return new ApiInfoBuilder()
                 .title("API Rest PackBack")
