@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
-public class Movimentacao {
+public class MovimentacaoOld {
 
     @Id
     @SequenceGenerator(name = "movimentacao_seq", sequenceName = "pontuacao_usuario_id_seq", allocationSize = 1)
@@ -24,10 +24,10 @@ public class Movimentacao {
 
     private LocalDateTime data;
 
-    public Movimentacao() {
+    public MovimentacaoOld() {
     }
 
-    public Movimentacao(Long id, TipoMovimentacao tipo, Usuario usuario, Embalagem embalagem, LocalDateTime data) {
+    public MovimentacaoOld(Long id, TipoMovimentacao tipo, Usuario usuario, Embalagem embalagem, LocalDateTime data) {
         this.id = id;
         this.tipo = tipo;
         this.usuario = usuario;
@@ -79,7 +79,7 @@ public class Movimentacao {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Movimentacao that = (Movimentacao) o;
+        MovimentacaoOld that = (MovimentacaoOld) o;
         return Objects.equals(id, that.id) &&
                 tipo == that.tipo &&
                 Objects.equals(usuario, that.usuario) &&
@@ -94,7 +94,7 @@ public class Movimentacao {
 
     @Override
     public String toString() {
-        return "Movimentacao{" +
+        return "MovimentacaoOld{" +
                 "id=" + id +
                 ", tipo=" + tipo +
                 ", usuario=" + usuario +
