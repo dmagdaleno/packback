@@ -1,12 +1,11 @@
 package br.com.boomerang.packback.domain.calculo.impl;
 
-import br.com.boomerang.packback.domain.Embalagem;
-import br.com.boomerang.packback.domain.calculo.RegraCalculo;
+import br.com.boomerang.packback.domain.calculo.RegraCalculoTemplate;
 
-public class CalculadoraVidro implements RegraCalculo {
+public class CalculadoraVidro extends RegraCalculoTemplate {
 
     @Override
-    public Double calculaPontos(Embalagem embalagem) {
-        return embalagem.getVolume() * embalagem.getPeso() * 10;
+    protected Double multiploDoMaterial() {
+        return 0.7;
     }
 }
