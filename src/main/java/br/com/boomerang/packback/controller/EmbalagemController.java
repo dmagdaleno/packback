@@ -30,7 +30,7 @@ public class EmbalagemController {
     public ResponseEntity<Iterable<Embalagem>> buscaTodos() {
         log.info("--> lista todas as embalagens...");
         var embalagems = repositorio.findAll();
-        log.info("<-- embalagens encontrados {}", embalagems);
+        log.info("<-- embalagens encontradas {}", embalagems);
         return ResponseEntity.ok(embalagems);
     }
 
