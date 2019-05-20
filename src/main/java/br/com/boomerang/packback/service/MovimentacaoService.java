@@ -59,6 +59,7 @@ public class MovimentacaoService {
         }
     }
 
+    @Transactional
     public Movimentacao movimenta(Long idEmbalagem, Long idUsuarioOrigem, Long idUsuarioDestino) {
         var embalagem = repositorioDeEmbalagem.findById(idEmbalagem).get();
         var de = repositorioDeUsuario.findById(idUsuarioOrigem).get();

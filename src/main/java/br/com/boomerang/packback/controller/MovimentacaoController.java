@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -27,7 +26,6 @@ public class MovimentacaoController {
     }
 
     @GetMapping("/{id}")
-    @Transactional
     public ResponseEntity<Movimentacao> buscaPorId(@PathVariable Long id) {
 
         Movimentacao movimentacao = servico.buscaPorId(id);
@@ -41,7 +39,6 @@ public class MovimentacaoController {
     }
 
     @PostMapping("/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}")
-    @Transactional
     public ResponseEntity<Movimentacao> movimenta(
             @PathVariable Long idEmbalagem,
             @PathVariable Long idUsuarioOrigem,

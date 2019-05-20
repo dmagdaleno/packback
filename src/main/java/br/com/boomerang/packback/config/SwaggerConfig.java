@@ -43,7 +43,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         return new ApiInfoBuilder()
                 .title("API Rest PackBack")
                 .description(desc)
-                .version(version)
+                .version(this.version)
                 .contact(contact)
                 .build();
     }
