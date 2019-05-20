@@ -1,6 +1,6 @@
 FROM postgres:9.4.20
 
-ENV LANG pt_BR.utf8
+ENV LANG en_US.utf8
 
 COPY scripts/init.ddl /docker-entrypoint-initdb.d/
 
