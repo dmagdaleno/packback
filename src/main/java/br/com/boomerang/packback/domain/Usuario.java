@@ -27,9 +27,11 @@ public class Usuario {
     private String cnpj;
     
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnore
     private Collection<Endereco> enderecos;
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Collection<Pontuacao> pontuacao;
     
     public Usuario() {

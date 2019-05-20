@@ -12,15 +12,15 @@ public class Movimentacao {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pontuacao_usuario_seq")
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario_origem", referencedColumnName = "id")
     private Usuario usuarioOrigem;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario_destino", referencedColumnName = "id")
     private Usuario usuarioDestino;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_embalagem")
     private Embalagem embalagem;
 

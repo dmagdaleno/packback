@@ -22,7 +22,6 @@ public class MovimentacaoController {
     }
 
     @GetMapping
-    @Transactional
     public ResponseEntity<List<Movimentacao>> buscaTodas() {
         return ResponseEntity.ok(servico.buscaTodas());
     }
@@ -51,7 +50,7 @@ public class MovimentacaoController {
         var movimentacao = servico.movimenta(idEmbalagem, idUsuarioOrigem, idUsuarioDestino);
 
         var uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/{id}")
+                .path("/movimentacoes/{id}")
                 .buildAndExpand(movimentacao.getId())
                 .toUri();
 
