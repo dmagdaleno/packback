@@ -1,5 +1,22 @@
-{
-  "id": null,
-  "material": "METAL",
-  "descricao": "Lata"
-}
+[
+  {
+    "id": null,
+    "material": "METAL",
+    "descricao": "Lata"
+  },
+  {
+    "id": null,
+    "material": "VIDRO",
+    "descricao": "Garrafa"
+  },
+  {
+    "id": null,
+    "material": "PLASTICO",
+    "descricao": "Pote"
+  },
+  {
+    "id": null,
+    "material": "PAPEL",
+    "descricao": "Bloco de folhas"
+  }
+]
