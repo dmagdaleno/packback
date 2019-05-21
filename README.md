@@ -56,7 +56,7 @@ Recupera uma movimentação específica por id:
 http://35.247.211.12:8080/packback/api/movimentacoes/{id}
 ```
 
-Reegistra uma nova movimentação:
+Registra uma nova movimentação:
 ```
 http://35.247.211.12:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
 ```
