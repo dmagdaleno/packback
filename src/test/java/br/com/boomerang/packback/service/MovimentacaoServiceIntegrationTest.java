@@ -2,7 +2,7 @@ package br.com.boomerang.packback.service;
 
 import br.com.boomerang.packback.domain.Embalagem;
 import br.com.boomerang.packback.domain.Usuario;
-import br.com.boomerang.packback.repository.InicializadorDeBanco;
+import br.com.boomerang.packback.repository.BancoDeDadosTest;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ public class MovimentacaoServiceIntegrationTest {
     private MovimentacaoService service;
 
     @Autowired
-    private InicializadorDeBanco init;
+    private BancoDeDadosTest init;
 
     private Usuario consumidor;
 
@@ -32,7 +32,7 @@ public class MovimentacaoServiceIntegrationTest {
 
     @Before
     public void setup() {
-        var objects = init.inicializaBase();
+        var objects = init.inicializa();
         consumidor = (Usuario) objects.get(0);
         produtor = (Usuario) objects.get(1);
         embalagem = (Embalagem) objects.get(2);

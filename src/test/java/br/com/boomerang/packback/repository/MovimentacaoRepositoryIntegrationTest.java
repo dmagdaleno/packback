@@ -23,7 +23,7 @@ public class MovimentacaoRepositoryIntegrationTest {
     private MovimentacaoRepository repository;
 
     @Autowired
-    private InicializadorDeBanco init;
+    private BancoDeDadosTest bd;
 
     private Usuario consumidor;
 
@@ -33,7 +33,7 @@ public class MovimentacaoRepositoryIntegrationTest {
 
     @Before
     public void setup() {
-        var objects = init.inicializaBase();
+        var objects = bd.inicializa();
         consumidor = (Usuario) objects.get(0);
         produtor = (Usuario) objects.get(1);
         embalagem = (Embalagem) objects.get(2);

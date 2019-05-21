@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class InicializadorDeBanco {
+public class BancoDeDadosTest {
 
     @Autowired
     private MovimentacaoRepository movimentacaoRepository;
@@ -25,28 +25,36 @@ public class InicializadorDeBanco {
     @Autowired
     private TipoEmbalagemRepository tipoEmbalagemRepository;
 
+    @Autowired
+    private PontuacaoRepository pontuacaoRepository;
+
     private Usuario consumidor;
 
     private Usuario produtor;
 
     private Embalagem embalagem;
 
-    public List<Object> inicializaBase() {
-        movimentacaoRepository.deleteAll();
+    public List<Object> inicializa() {
+        apagaTudo();
 
-        usuarioRepository.deleteAll();
         var consumidor = UsuarioBuilderUtils.criaUsuarioConsumidor();
         var produtor = UsuarioBuilderUtils.criaUsuarioProdutor();
         this.consumidor = usuarioRepository.save(consumidor);
         this.produtor = usuarioRepository.save(produtor);
 
-        embalagemRepository.deleteAll();
-        tipoEmbalagemRepository.deleteAll();
         var tipo = new TipoEmbalagem(null, "Lata", Material.METAL);
         var tipoSalvo = tipoEmbalagemRepository.save(tipo);
         var embalagem = new Embalagem(null, tipoSalvo, "Lata Coca-Cola", 350.0, 10.0);
         this.embalagem = embalagemRepository.save(embalagem);
 
         return List.of(consumidor, produtor, embalagem);
+    }
+
+    public void apagaTudo() {
+        movimentacaoRepository.deleteAll();
+        usuarioRepository.deleteAll();
+        embalagemRepository.deleteAll();
+        tipoEmbalagemRepository.deleteAll();
+        pontuacaoRepository.deleteAll();
     }
 }
