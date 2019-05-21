@@ -1,0 +1,26 @@
+server:
+  servlet:
+    context-path: /packback/api
+  port: 8080
+
+spring:
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgres:5432/packback_db
+    username: postgres
+    password: pg_packback_senha
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL94Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL94Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+
+info:
+  build:
+    version: ${version?:unknown}

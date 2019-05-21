@@ -1,0 +1,28 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:v0.0.1
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - packbacknet
+
+  packback:
+    image: packback:v0.0.2
+    container_name: packback
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    ports:
+      - "8080:8080"
+    networks:
+      - packbacknet
+    depends_on:
+      - "postgres"
+
+networks:
+  packbacknet:
+    driver: bridge
+
+volumes:
+  postgres_data:

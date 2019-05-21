@@ -1,0 +1,7 @@
+./gradlew clean build
+
+cp build/libs/packback-0.0.2.jar docker/packback.jar
+
+docker build -t packback:v0.0.2 -t packback:latest docker/
+
+docker-compose -f docker/docker-compose.yaml up -d
