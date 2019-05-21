@@ -11,21 +11,28 @@ Informações necessárias para construir e rodar o projeto.
 - Docker 18.x
 - Java 12
 
-### Passos
+### Passos com Docker
 
 Construir imagem do banco:
 ```
-docker build -t postgres:v0.0.1 db/
+docker build -t postgres:v0.0.1 docker/db/
 ```
+
+Construir imagem da aplicação
+```
+docker build -t packback:v0.0.2 -t packback:latest docker/
+```
+
+docker network create pbnet
 
 Executar o banco:
 ```
-docker run --rm --name pg-packback-db -d -p 5432:5432 -v $pwd/db/volume/postgres:/var/lib/postgresql/data postgres:v0.0.1
+docker run --rm --name pg-packback-db --net pbnet -d -p 5432:5432 -v docker/db/volume/postgres:/var/lib/postgresql/data postgres:v0.0.1
 ```
 
-Rodar a aplicação:
+Executar a aplicação:
 ```
-./gradlew bootRun
+docker run --rm --name packback --net pbnet -d -p 8080:8080 -e SPRING_PROFILES_ACTIVE=docker packback:v0.0.2
 ```
 
 ## Uso
