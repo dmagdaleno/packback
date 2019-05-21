@@ -23,9 +23,12 @@ public class UsuarioRepositoryIntegrationTest {
     @Autowired
     private UsuarioRepository repositorio;
 
+    @Autowired
+    private BancoDeDadosTest bd;
+
     @Before
     public void setup() {
-        repositorio.deleteAll();
+        bd.apagaTudo();
     }
 
     @Test
@@ -39,11 +42,11 @@ public class UsuarioRepositoryIntegrationTest {
         assertThat(usuarios.size()).isEqualTo(1);
 
         Usuario usuarioDoBanco = usuarios.get(0);
-        assertThat(usuarioDoBanco.getNome()).isEqualTo("João da Silva");
+        assertThat(usuarioDoBanco.getNome()).isEqualTo("Nome do Consumidor");
 
         List<Endereco> enderecos = usuarioDoBanco.getEnderecos();
         assertThat(enderecos.size()).isEqualTo(1);
-        assertThat(enderecos.get(0).getRua()).isEqualTo("Rua Muito Bacana");
+        assertThat(enderecos.get(0).getRua()).isEqualTo("Rua do Consumidor");
     }
 
     public List<Usuario> getUsuariosDoBanco() {
@@ -61,11 +64,11 @@ public class UsuarioRepositoryIntegrationTest {
         assertThat(usuarios.size()).isEqualTo(1);
 
         Usuario usuarioDoBanco = usuarios.get(0);
-        assertThat(usuarioDoBanco.getNome()).isEqualTo("João da Silva");
+        assertThat(usuarioDoBanco.getNome()).isEqualTo("Nome do Consumidor");
 
         List<Endereco> enderecos = usuarioDoBanco.getEnderecos();
         assertThat(enderecos.size()).isEqualTo(2);
-        assertThat(enderecos.get(0).getRua()).isEqualTo("Rua Muito Bacana");
+        assertThat(enderecos.get(0).getRua()).isEqualTo("Rua do Consumidor");
         assertThat(enderecos.get(1).getRua()).isEqualTo("Nova Rua");
     }
 
@@ -82,15 +85,15 @@ public class UsuarioRepositoryIntegrationTest {
 
         Usuario usuarioSalvo = encontraUsuarioPorId(idUsuarioSalvo);
 
-        assertThat(usuarioSalvo.getNome()).isEqualTo("João da Silva");
+        assertThat(usuarioSalvo.getNome()).isEqualTo("Nome do Consumidor");
 
         usuario.setId(idUsuarioSalvo);
-        usuario.setNome("Outro João");
+        usuario.setNome("Outro Consumidor");
         repositorio.save(usuario);
 
         var usuarioEditado = encontraUsuarioPorId(idUsuarioSalvo);
 
-        assertThat(usuarioEditado.getNome()).isEqualTo("Outro João");
+        assertThat(usuarioEditado.getNome()).isEqualTo("Outro Consumidor");
     }
 
     @Test

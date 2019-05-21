@@ -25,10 +25,12 @@ public class EmbalagemIntegrationTest {
     @Autowired
     private TipoEmbalagemRepository tipoEmbalagemRepositorio;
 
+    @Autowired
+    private BancoDeDadosTest bd;
+
     @Before
     public void setup() {
-        repositorio.deleteAll();
-        tipoEmbalagemRepositorio.deleteAll();
+        bd.apagaTudo();
     }
 
     @Test
