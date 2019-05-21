@@ -13,7 +13,7 @@ public class Pontuacao {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "pontuacao_seq")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_usuario")
     @JsonIgnore
     private Usuario usuario;
