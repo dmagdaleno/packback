@@ -32,7 +32,7 @@ public class Usuario {
 
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Collection<Pontuacao> pontuacao;
+	private Collection<Pontuacao> pontuacao = new ArrayList<>();
     
     public Usuario() {
     	this("Indefinido", "Indefinido", null, null, null);
