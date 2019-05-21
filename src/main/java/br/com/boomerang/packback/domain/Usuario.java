@@ -30,7 +30,7 @@ public class Usuario {
 	@JsonIgnore
     private Collection<Endereco> enderecos;
 
-	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Collection<Pontuacao> pontuacao = new ArrayList<>();
     
@@ -62,6 +62,10 @@ public class Usuario {
 	@JsonIgnore
 	public boolean isNotTipoConsumidor() {
 		return !this.isTipoConsumidor();
+	}
+
+	public Double getPontos() {
+    	return this.pontuacao.stream().mapToDouble(Pontuacao::getPontos).sum();
 	}
 
     public Long getId() {
