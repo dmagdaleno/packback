@@ -1,3 +1,11 @@
+sudo -s
+
+cd ~/work/packback
+
+git pull
+
+export JAVA_HOME=/home/diegommagdaleno/tools/jdk-12.0.1+12
+
 ./gradlew clean build
 
 cp build/libs/packback*.jar docker/packback.jar
