@@ -87,6 +87,6 @@ Verifique se a aplicação subiu corretamente acessando a documentação:
 http://localhost:8080/packback/api/swagger-ui.html
 ```
 
-*Observação:* Assim que o docker compose completa a execução, significa que as imagens docker já estão prontas, 
+**Observação:** Assim que o docker compose completa a execução, significa que as imagens docker já estão prontas, 
 porém, pode ser que o Spring Boot ainda não tenha concluído. Caso a URL acima não funcione imediatamente, 
 aguarde alguns segundos e tente novamente.
