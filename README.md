@@ -2,7 +2,41 @@
 
 API para cadastro e consultas de materiais recicláveis disponíveis para coleta do sistema PackBack.
 
-## Build e Execução
+## Acesso em Cloud
+
+Documentação da API:
+
+```
+http://35.247.211.12:8080/packback/api/swagger-ui.html
+```
+
+### Principais endpoints
+
+#### Movimentações
+
+Recupera todas as movimentações realizadas (`GET`):
+```
+http://35.247.211.12:8080/packback/api/movimentacoes
+```
+
+Recupera uma movimentação específica por id (`GET`):
+```
+http://35.247.211.12:8080/packback/api/movimentacoes/{id}
+```
+
+Registra uma nova movimentação (`POST`):
+```
+http://35.247.211.12:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
+```
+
+#### Pontuação
+
+Recupera todas as pontuações de um usuário pelo seu `id` (`GET`):
+```
+http://35.247.211.12:8080/packback/api/pontuacoes/{idUsuario}
+```
+
+## Build e Execução Local
 
 Informações necessárias para construir e rodar o projeto.
 
@@ -56,38 +90,3 @@ http://localhost:8080/packback/api/swagger-ui.html
 *Observação:* Assim que o docker compose completa a execução, significa que as imagens docker já estão prontas, 
 porém, pode ser que o Spring Boot ainda não tenha concluído. Caso a URL acima não funcione imediatamente, 
 aguarde alguns segundos e tente novamente.
-
-
-## Acesso em Cloud
-
-Documentação da API:
-
-```
-http://35.247.211.12:8080/packback/api/swagger-ui.html
-```
-
-### Principais endpoints
-
-#### Movimentações
-
-Recupera todas as movimentações realizadas (`GET`):
-```
-http://35.247.211.12:8080/packback/api/movimentacoes
-```
-
-Recupera uma movimentação específica por id (`GET`):
-```
-http://35.247.211.12:8080/packback/api/movimentacoes/{id}
-```
-
-Registra uma nova movimentação (`POST`):
-```
-http://35.247.211.12:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
-```
-
-#### Pontuação
-
-Recupera todas as pontuações de um usuário pelo seu `id` (`GET`):
-```
-http://35.247.211.12:8080/packback/api/pontuacoes/{idUsuario}
-```
