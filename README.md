@@ -66,19 +66,19 @@ Documentação da API:
 http://35.247.211.12:8080/packback/api/swagger-ui.html
 ```
 
-### Endpoint principal
+### Principais endpoints
 
-Recupera todas as movimentações realizadas:
+Recupera todas as movimentações realizadas (`GET`):
 ```
 http://35.247.211.12:8080/packback/api/movimentacoes
 ```
 
-Recupera uma movimentação específica por id:
+Recupera uma movimentação específica por id (`GET`):
 ```
 http://35.247.211.12:8080/packback/api/movimentacoes/{id}
 ```
 
-Registra uma nova movimentação:
+Registra uma nova movimentação (`POST`):
 ```
 http://35.247.211.12:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
 ```
