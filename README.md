@@ -19,7 +19,7 @@ Recupera todas as movimentações realizadas (`GET`):
 http://35.247.211.12:8080/packback/api/movimentacoes
 ```
 
-Recupera uma movimentação específica por id (`GET`):
+Recupera uma movimentação específica por `id` (`GET`):
 ```
 http://35.247.211.12:8080/packback/api/movimentacoes/{id}
 ```
