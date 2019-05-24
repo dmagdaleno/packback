@@ -4,7 +4,7 @@ API para cadastro e consultas de materiais recicláveis disponíveis para coleta
 
 ## Acesso em Cloud
 
-Documentação da API:
+Documentação completa da API:
 
 ```
 http://35.247.211.12:8080/packback/api/swagger-ui.html
