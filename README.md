@@ -68,6 +68,8 @@ http://35.247.211.12:8080/packback/api/swagger-ui.html
 
 ### Principais endpoints
 
+#### Movimentações
+
 Recupera todas as movimentações realizadas (`GET`):
 ```
 http://35.247.211.12:8080/packback/api/movimentacoes
@@ -81,4 +83,11 @@ http://35.247.211.12:8080/packback/api/movimentacoes/{id}
 Registra uma nova movimentação (`POST`):
 ```
 http://35.247.211.12:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
+```
+
+#### Pontuação
+
+Recupera todas as pontuações de um usuário pelo seu `id` (`GET`):
+```
+http://35.247.211.12:8080/packback/api/pontuacoes/{idUsuario}
 ```
