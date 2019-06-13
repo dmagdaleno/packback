@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.1.1:5432/packback_db
+
+info:
+  build:
+    version: ${version?:unknown}
