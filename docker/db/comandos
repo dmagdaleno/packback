@@ -1,6 +1,6 @@
-docker build -t postgres:v0.0.1 db/
+docker build -t postgres:v0.0.1 docker/db/
 
-docker run --rm --name pg-packback-db -d -p 5432:5432 -v $pwd/db/volume/postgres:/var/lib/postgresql/data postgres:v0.0.1
+docker run --rm --name pg-packback-db -d -p 5432:5432 -v $pwd/docker/db/volume/postgres:/var/lib/postgresql/data postgres:v0.0.1
 
 docker exec -it pg-packback-db bash
 
