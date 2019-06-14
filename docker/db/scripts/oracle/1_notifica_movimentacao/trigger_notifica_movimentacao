@@ -1,0 +1,31 @@
+CREATE OR REPLACE TRIGGER notifica_movimentacao 
+   AFTER INSERT ON movimentacao
+   FOR EACH ROW 
+
+DECLARE
+   v_email_origem varchar2(255)
+   v_email_destino varchar2(255)
+
+BEGIN
+
+   SELECT email_origem into v_email_origem FROM usuario u
+      WHERE u.id = :NEW.id_usuario_origem;
+   
+   SELECT email_destino into v_email_destino FROM usuario u
+      WHERE u.id = :NEW.id_usuario_destino;
+
+   envia_email(
+      p_to        => v_email_origem,
+      p_from      => 'comunicacao@packback.com.br',
+      p_subject   => 'Movimentação Realizada',
+      p_message   => 'Você está movimentando a embalgem ' || :NEW.id_embalagem || ' para o destino ' || :NEW.id_usuario_destino,
+      p_smtp_host => 'smtp.packback.com.br');
+
+   envia_email(
+      p_to        => v_email_destino,
+      p_from      => 'comunicacao@packback.com.br',
+      p_subject   => 'Movimentação Realizada',
+      p_message   => 'Você está recebendo a embalgem ' || :NEW.id_embalagem || ' do usuário ' || :NEW.id_usuario_origem,
+      p_smtp_host => 'smtp.packback.com.br');
+END;
+/
