@@ -3,3 +3,5 @@ A,2,VIDRO,Garrafa
 A,3,PLASTICO,Pote
 A,4,PAPEL,Folhas
 B,1,Lata Coca-Cola,350.0,10.0,1
+C,1,00102-003,Rua do Cliente,270,Bairro Jardim,São Paulo,São Paulo,BR
+C,2,00107-004,Rua da Empresa,720,Bairro Industrial,São Paulo,São Paulo,BR
