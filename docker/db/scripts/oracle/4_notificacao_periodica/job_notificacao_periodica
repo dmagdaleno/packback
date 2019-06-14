@@ -2,7 +2,7 @@ BEGIN
   DBMS_SCHEDULER.CREATE_JOB (
    job_name           =>  'notificacao_periodica',
    job_type           =>  'STORED_PROCEDURE',
-   job_action         =>  'PROC_NOTIFICACAO_PERIODICA',
+   job_action         =>  'PROC_NOTIFICA_USUARIOS',
    repeat_interval    =>  'FREQ=MONTHLY; BYMONTHDAY=-1;', 
    auto_drop          =>   FALSE,
    job_class          =>  'batch_update_jobs',
