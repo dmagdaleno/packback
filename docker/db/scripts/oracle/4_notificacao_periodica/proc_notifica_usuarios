@@ -1,0 +1,26 @@
+CREATE OR REPLACE PROCEDURE proc_notifica_usuarios AS
+BEGIN
+   FOR usuario IN (
+      SELECT 
+         u.nome AS nome, 
+         u.email AS email, 
+         SUM(p.pontos) AS pontos, 
+         COUNT(m.id) AS movimentacoes 
+      FROM 
+         usuario u, pontuacao p, movimentacao m 
+      WHERE 
+         p.id_usuario = u.id AND m.id_usuario_origem = u.id 
+      GROUP BY u.id
+   )
+   LOOP
+      
+      envia_email(
+         p_to        => usuario.email,
+         p_from      => 'comunicacao@packback.com.br',
+         p_subject   => 'Resumo mensal',
+         p_message   => CONCAT('Olá, ', usuario.nome, '!', chr(10), 'Esse é seu resumo mensal. ', chr(10), 'Movimentações: ', usuario.movimentacoes, chr(10), 'Pontos: ', usuario.pontos),
+         p_smtp_host => 'smtp.packback.com.br');
+
+   END LOOP;
+END;
+/
