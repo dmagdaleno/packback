@@ -17,8 +17,14 @@ options (errors=9999999, rows=5)
     fields terminated by ","
       (dummy0 FILLER POSITION(1), id "embalagem_id_seq.nextval", descricao, volume, peso, tipo_id)
 
-  into table endereco
+  into table usuario
     truncate
     when (1:1) = 'C'
     fields terminated by ","
-      (dummy0 FILLER POSITION(1), id "endereco_id_seq.nextval", cep, rua, numero, bairro, cidade, estado, pais)
+      (dummy0 FILLER POSITION(1), id "usuario_id_seq.nextval", nome, tipo, email, cpf, cnpj, razaoSocial)
+
+  into table endereco
+    truncate
+    when (1:1) = 'D'
+    fields terminated by ","
+      (dummy0 FILLER POSITION(1), id "endereco_id_seq.nextval", cep, rua, numero, bairro, cidade, estado, pais, id_usuario)
