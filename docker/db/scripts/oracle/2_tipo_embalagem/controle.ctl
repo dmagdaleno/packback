@@ -1,10 +1,10 @@
-options (errors=9999999, rows=5)
+options (errors=9999999, rows=2)
 load data
- characterset WE8ISO8859P1
+ characterset UTF8
  infile 'dados.txt'
  badfile 'erros.bad'
  discardfile 'descartados.dsc'
- append
+ apptruncateend
  into table tipo_embalagem
  fields terminated by ","
-( id tp_embalagem_id_seq(max), material, descricao)
+(id "tp_embalagem_id_seq.nextval", material, descricao)

@@ -1,4 +1,4 @@
-METAL,Lata
-VIDRO,Garrafa
-PLASTICO,Pote
-PAPEL,Folhas
+1,METAL,Lata
+2,VIDRO,Garrafa
+3,PLASTICO,Pote
+4,PAPEL,Folhas
