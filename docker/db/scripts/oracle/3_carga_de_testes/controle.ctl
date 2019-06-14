@@ -1,10 +1,18 @@
-options (errors=9999999, rows=2)
+options (errors=9999999, rows=5)
 load data
  characterset UTF8
  infile 'dados.txt'
  badfile 'erros.bad'
  discardfile 'descartados.dsc'
- apptruncateend
+
  into table tipo_embalagem
- fields terminated by ","
-(id "tp_embalagem_id_seq.nextval", material, descricao)
+   truncate
+   when (1:1) = 'A'
+   fields terminated by ","
+      (dummy0 FILLER, id "tp_embalagem_id_seq.nextval", material, descricao)
+
+ into table embalagem
+   truncate
+   when (1:1) = 'B'
+   fields terminated by ","
+      (dummy0 FILLER POSITION(1), id "embalagem_id_seq.nextval", descricao, volume, peso, tipo_id)
