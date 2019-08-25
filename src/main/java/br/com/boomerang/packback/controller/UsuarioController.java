@@ -2,6 +2,7 @@ package br.com.boomerang.packback.controller;
 
 import br.com.boomerang.packback.domain.Usuario;
 import br.com.boomerang.packback.repository.UsuarioRepository;
+import br.com.boomerang.packback.service.UsuarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,12 @@ public class UsuarioController {
     private static final Logger log = LoggerFactory.getLogger(UsuarioController.class);
 
     private UsuarioRepository repositorio;
+    private final UsuarioService servico;
 
     @Autowired
-    public UsuarioController(UsuarioRepository repositorio) {
+    public UsuarioController(UsuarioRepository repositorio, UsuarioService servico) {
         this.repositorio = repositorio;
+        this.servico = servico;
     }
 
     @GetMapping
@@ -55,7 +58,7 @@ public class UsuarioController {
     @PostMapping
     public ResponseEntity<Usuario> adiciona(@RequestBody Usuario usuario) {
         log.info("--> salvando usuario {}...", usuario);
-        var usuarioSalvo = repositorio.save(usuario);
+        var usuarioSalvo = servico.salva(usuario);
         log.info("<-- usuario salvo {}", usuarioSalvo);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
