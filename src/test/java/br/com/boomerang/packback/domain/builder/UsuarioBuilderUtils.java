@@ -19,6 +19,7 @@ public class UsuarioBuilderUtils {
                 .comNome(nome)
                 .comCpf("00100200304")
                 .comEmail("consumidor@gmail.com")
+                .eSenha("123456")
                 .adicionaEndereco(endereco)
                 .constroi();
     }
@@ -39,6 +40,7 @@ public class UsuarioBuilderUtils {
                 .comCpf("00100200345")
                 .comCnpj("001002003000145")
                 .comEmail("produtor@empresa.com.br")
+                .eSenha("123456")
                 .adicionaEndereco(endereco)
                 .constroi();
     }
