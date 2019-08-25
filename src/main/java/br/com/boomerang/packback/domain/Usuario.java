@@ -1,6 +1,7 @@
 package br.com.boomerang.packback.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(value = "senha", allowSetters = true)
 public class Usuario {
 
     @Id
@@ -17,9 +19,14 @@ public class Usuario {
     
     private TipoUsuario tipo;
 
+	@Column(unique=true)
     private String email;
+
     private String nome;
     private String cpf;
+
+    @Transient
+    private String senha;
 
     @Column(name = "razao_social")
     private String razaoSocial;
@@ -33,16 +40,21 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
 	private Collection<Pontuacao> pontuacao = new ArrayList<>();
+
+	@OneToOne
+	@JsonIgnore
+	private Login login;
     
     public Usuario() {
-    	this("Indefinido", "Indefinido", null, null, null);
+    	this("Indefinido", "Indefinido", null, null, null, null);
     }
     
-    public Usuario(String email, String nome, String cpf, String razaoSocial, String cnpj) {
+    public Usuario(String email, String nome, String cpf, String senha, String razaoSocial, String cnpj) {
 		super();
 		this.email = email;
 		this.nome = nome;
 		this.cpf = cpf;
+		this.senha = senha;
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
 		this.enderecos = new ArrayList<>();
@@ -108,7 +120,23 @@ public class Usuario {
         this.cpf = cpf;
     }
 
-    public String getRazaoSocial() {
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
+	public Login getLogin() {
+		return login;
+	}
+
+	public void setLogin(Login login) {
+		this.login = login;
+	}
+
+	public String getRazaoSocial() {
         return razaoSocial;
     }
 

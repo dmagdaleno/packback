@@ -14,6 +14,7 @@ public class UsuarioBuilder {
 	private String nome = "Indefinido";
 	private String email = "Indefinido";
 	private String cpf = null;
+	private String senha = null;
 	private String razaoSocial = null;
 	private String cnpj = null;
 	private Collection<Endereco> enderecos = new ArrayList<>();
@@ -30,6 +31,11 @@ public class UsuarioBuilder {
 
 	public UsuarioBuilder comEmail(String email) {
 		this.email = email;
+		return this;
+	}
+
+	public UsuarioBuilder eSenha(String senha) {
+		this.senha = senha;
 		return this;
 	}
 	
@@ -59,7 +65,7 @@ public class UsuarioBuilder {
 	}
 	
 	public Usuario constroi() {
-		Usuario usuario = new Usuario(email, nome, cpf, razaoSocial, cnpj);
+		Usuario usuario = new Usuario(email, nome, cpf, senha, razaoSocial, cnpj);
 
 		if(id != null && id > 0)
 			usuario.setId(id);
