@@ -24,6 +24,11 @@ Recupera uma movimentação específica por `id` (`GET`):
 http://35.247.211.12:8080/packback/api/movimentacoes/{id}
 ```
 
+Recupera todas as movimentações realizadas por um usuário (`GET`):
+```
+http://35.247.211.12:8080/packback/api/movimentacoes/usuario/{idUsuario}
+```
+
 Registra uma nova movimentação (`POST`):
 ```
 http://35.247.211.12:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
