@@ -2,7 +2,7 @@
   "id": null,
   "descricao": "Lata Coca-Cola",
   "volume": 350.0,
-  "peso": 10.0,
+  "peso": 0.1,
   "tipo": {
     "id": 1
   }
