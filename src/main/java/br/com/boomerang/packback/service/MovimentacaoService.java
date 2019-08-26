@@ -25,19 +25,19 @@ public class MovimentacaoService {
     private final MovimentacaoRepository repositorioDeMovimentacao;
     private final EmbalagemRepository repositorioDeEmbalagem;
     private final PontuacaoRepository repositorioDePontuacao;
-    private final UsuarioRepository repositorioDeUsuario;
+    private final UsuarioService usuariosService;
 
     @Autowired
     public MovimentacaoService(
             MovimentacaoRepository repositorioDeMovimentacao,
             EmbalagemRepository repositorioDeEmbalagem,
             PontuacaoRepository repositorioDePontuacao,
-            UsuarioRepository repositorioDeUsuario) {
+            UsuarioService usuariosService) {
 
         this.repositorioDeMovimentacao = repositorioDeMovimentacao;
         this.repositorioDeEmbalagem = repositorioDeEmbalagem;
         this.repositorioDePontuacao = repositorioDePontuacao;
-        this.repositorioDeUsuario = repositorioDeUsuario;
+        this.usuariosService = usuariosService;
     }
 
     public List<Movimentacao> buscaTodas(){
@@ -59,11 +59,15 @@ public class MovimentacaoService {
         }
     }
 
+    public List<Movimentacao> buscaPorUsuario(Long idUsuario) {
+        return repositorioDeMovimentacao.findByUsuarioOrigemId(idUsuario);
+    }
+
     @Transactional
     public Movimentacao movimenta(Long idEmbalagem, Long idUsuarioOrigem, Long idUsuarioDestino) {
         var embalagem = repositorioDeEmbalagem.findById(idEmbalagem).get();
-        var de = repositorioDeUsuario.findById(idUsuarioOrigem).get();
-        var para = repositorioDeUsuario.findById(idUsuarioDestino).get();
+        var de = usuariosService.buscaPorId(idUsuarioOrigem).get();
+        var para = usuariosService.buscaPorId(idUsuarioDestino).get();
         return movimenta(embalagem, de, para);
     }
 
@@ -76,7 +80,7 @@ public class MovimentacaoService {
             var pontuacao = new Pontuacao(null, origem, embalagem.calculaPontos());
             origem.adicionaPontuacao(pontuacao);
             repositorioDePontuacao.save(pontuacao);
-            repositorioDeUsuario.save(origem);
+            usuariosService.salva(origem);
         }
 
         var movimentacaoSalva = repositorioDeMovimentacao.save(movimentacao);

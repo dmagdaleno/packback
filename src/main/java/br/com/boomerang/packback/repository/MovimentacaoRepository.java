@@ -9,4 +9,7 @@ public interface MovimentacaoRepository extends CrudRepository<Movimentacao, Lon
 
     @Override
     List<Movimentacao> findAll();
+
+    List<Movimentacao> findByUsuarioOrigemId(Long usuarioOrigemId);
+
 }

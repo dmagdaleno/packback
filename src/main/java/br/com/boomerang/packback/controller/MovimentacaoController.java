@@ -25,6 +25,11 @@ public class MovimentacaoController {
         return ResponseEntity.ok(servico.buscaTodas());
     }
 
+    @GetMapping("/usuario/{id}")
+    public ResponseEntity<List<Movimentacao>> buscaPorUsuario(@PathVariable Long id) {
+        return ResponseEntity.ok(servico.buscaPorUsuario(id));
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Movimentacao> buscaPorId(@PathVariable Long id) {
 
