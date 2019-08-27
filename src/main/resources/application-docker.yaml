@@ -6,7 +6,7 @@ server:
 spring:
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://postgres:5432/packback_db
+    url: jdbc:postgresql://pg-packback-db:5432/packback_db
     username: postgres
     password: pg_packback_senha
 

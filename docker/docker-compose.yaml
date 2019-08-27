@@ -2,7 +2,7 @@ version: '3'
 services:
   postgres:
     image: pg-packback-db:v0.0.2
-    container_name: postgres
+    container_name: pg-packback-db
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
@@ -18,7 +18,7 @@ services:
     networks:
       - packbacknet
     depends_on:
-      - "postgres"
+      - "pg-packback-db"
 
 networks:
   packbacknet:

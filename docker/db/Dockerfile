@@ -2,7 +2,7 @@ FROM postgres:9.4.20
 
 ENV LANG en_US.utf8
 
-COPY scripts/init.sql /docker-entrypoint-initdb.d/
+COPY init/script.sql /docker-entrypoint-initdb.d/
 
 ENV PATH $PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 ENV PGDATA /var/lib/postgresql/data
