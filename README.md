@@ -69,7 +69,7 @@ cp build/libs/packback*.jar docker/packback.jar
 
 Construir imagem docker do banco:
 ```
-docker build -t postgres:v0.0.1 docker/db/
+docker build -t pg-packback-db:v0.0.2 docker/db/
 ```
 
 Construir imagem docker da aplicação
