@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
@@ -25,6 +26,7 @@ public class UsuarioService {
         this.repositorioDeLogin = repositorioDeLogin;
     }
 
+    @Transactional
     public Usuario salva(Usuario usuario) {
         var login = repositorioDeLogin.save(new Login(usuario.getSenha()));
         usuario.setLogin(login);
