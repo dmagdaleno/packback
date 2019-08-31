@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -68,25 +70,29 @@ public class MovimentacaoService {
         var embalagem = repositorioDeEmbalagem.findById(idEmbalagem).get();
         var de = usuariosService.buscaPorId(idUsuarioOrigem).get();
         var para = usuariosService.buscaPorId(idUsuarioDestino).get();
-        return movimenta(embalagem, de, para);
+        return movimenta(Collections.singletonList(embalagem), de, para);
     }
 
-    public Movimentacao movimenta(Embalagem embalagem, Usuario origem, Usuario destino) {
-        log.info("--> movimentando embalagem {} de {} para {}...", embalagem, origem, destino);
+    public Movimentacao movimenta(List<Embalagem> embalagens, Usuario origem, Usuario destino) {
+        log.info("--> movimentando embalagem {} de {} para {}...", embalagens, origem, destino);
 
-        var movimentacao = new MovimentacaoBuilder().movimenta(embalagem).de(origem).para(destino).constroi();
+        var movimentacao = new MovimentacaoBuilder().movimenta(embalagens).de(origem).para(destino).constroi();
 
-        if(movimentacao.deveSerPontuada()) {
-            var pontuacao = new Pontuacao(null, origem, embalagem.calculaPontos());
-            origem.adicionaPontuacao(pontuacao);
-            repositorioDePontuacao.save(pontuacao);
-            usuariosService.salva(origem);
-        }
+        var movimentacaoSalva = salva(movimentacao);
 
-        var movimentacaoSalva = repositorioDeMovimentacao.save(movimentacao);
-
-        log.info("<-- registro da movimentação da embalagem {} de {} para {} concluído", embalagem, origem, destino);
+        log.info("<-- registro da movimentação da embalagem {} de {} para {} concluído", embalagens, origem, destino);
 
         return movimentacaoSalva;
+    }
+
+    public Movimentacao salva(Movimentacao movimentacao) {
+
+        if(movimentacao.deveSerPontuada()) {
+            Pontuacao pontuacao = movimentacao.calculaPontuacao();
+            repositorioDePontuacao.save(pontuacao);
+            usuariosService.salva(movimentacao.getUsuarioOrigem());
+        }
+
+        return repositorioDeMovimentacao.save(movimentacao);
     }
 }

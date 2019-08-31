@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -51,11 +52,25 @@ public class MovimentacaoController {
 
         var movimentacao = servico.movimenta(idEmbalagem, idUsuarioOrigem, idUsuarioDestino);
 
-        var uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/movimentacoes/{id}")
-                .buildAndExpand(movimentacao.getId())
-                .toUri();
+        URI uri = getUri(movimentacao);
 
         return ResponseEntity.created(uri).build();
+    }
+
+    @PostMapping("/movimenta")
+    public ResponseEntity<Movimentacao> movimenta(@RequestBody Movimentacao movimentacao) {
+
+        var movimentacaoSalva = servico.salva(movimentacao);
+
+        URI uri = getUri(movimentacaoSalva);
+
+        return ResponseEntity.created(uri).build();
+    }
+
+    private URI getUri(Movimentacao movimentacaoSalva) {
+        return ServletUriComponentsBuilder.fromCurrentContextPath()
+                .path("/movimentacoes/{id}")
+                .buildAndExpand(movimentacaoSalva.getId())
+                .toUri();
     }
 }
