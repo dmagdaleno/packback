@@ -5,6 +5,7 @@ import br.com.boomerang.packback.domain.Movimentacao;
 import br.com.boomerang.packback.domain.Usuario;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class MovimentacaoBuilder {
 
@@ -12,7 +13,7 @@ public class MovimentacaoBuilder {
 
     private Usuario destino;
 
-    private Embalagem embalagem;
+    private List<Embalagem> embalagens;
 
     private LocalDateTime data;
 
@@ -20,8 +21,8 @@ public class MovimentacaoBuilder {
         this.data = LocalDateTime.now();
     }
 
-    public MovimentacaoBuilder movimenta(Embalagem embalagem) {
-        this.embalagem = embalagem;
+    public MovimentacaoBuilder movimenta(List<Embalagem> embalagens) {
+        this.embalagens = embalagens;
         return this;
     }
 
@@ -36,6 +37,6 @@ public class MovimentacaoBuilder {
     }
 
     public Movimentacao constroi() {
-        return new Movimentacao(null, origem, destino, embalagem, data);
+        return new Movimentacao(null, origem, destino, embalagens, data);
     }
 }
