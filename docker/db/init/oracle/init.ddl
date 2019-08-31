@@ -1,5 +1,5 @@
 
-CREATE TABLE embalagens (
+CREATE TABLE embalagem (
     id integer NOT NULL,
     descricao character varying(255),
     peso double precision,
@@ -92,7 +92,7 @@ CREATE SEQUENCE usuario_id_seq
     NOCACHE;
 
 
-ALTER TABLE embalagens
+ALTER TABLE embalagem
     ADD CONSTRAINT embalagem_pkey PRIMARY KEY (id);
 
 ALTER TABLE endereco
@@ -113,7 +113,7 @@ ALTER TABLE usuario
 ALTER TABLE endereco
     ADD CONSTRAINT fk233cf5mftynvlqs8ydwjlgf0i FOREIGN KEY (id_usuario) REFERENCES usuario(id);
 
-ALTER TABLE embalagens
+ALTER TABLE embalagem
     ADD CONSTRAINT fk8acqv2gedbo7gs7a9ft3b1h7m FOREIGN KEY (tipo_id) REFERENCES tipo_embalagem(id);
 
 ALTER TABLE movimentacao
@@ -123,7 +123,7 @@ ALTER TABLE pontuacao
     ADD CONSTRAINT fkcbnlcuyiy6v9nfvtsr2ivakim FOREIGN KEY (id_usuario) REFERENCES usuario(id);
 
 ALTER TABLE movimentacao
-    ADD CONSTRAINT fkjwaorj6kgwiqrwp1tpkbabc83 FOREIGN KEY (id_embalagem) REFERENCES embalagens(id);
+    ADD CONSTRAINT fkjwaorj6kgwiqrwp1tpkbabc83 FOREIGN KEY (id_embalagem) REFERENCES embalagem(id);
 
 ALTER TABLE movimentacao
     ADD CONSTRAINT fkslvco5tngq8w6xxms7y6gcnav FOREIGN KEY (id_usuario_destino) REFERENCES usuario(id);
