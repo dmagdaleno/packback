@@ -2,6 +2,7 @@ package br.com.boomerang.packback.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,20 +21,20 @@ public class Movimentacao {
     @JoinColumn(name = "id_usuario_destino", referencedColumnName = "id")
     private Usuario usuarioDestino;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id_embalagem")
-    private Embalagem embalagem;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Embalagem> embalagens;
 
     private LocalDateTime data;
 
     public Movimentacao() {
     }
 
-    public Movimentacao(Long id, Usuario usuarioOrigem, Usuario usuarioDestino, Embalagem embalagem, LocalDateTime data) {
+    public Movimentacao(
+            Long id, Usuario usuarioOrigem, Usuario usuarioDestino, List<Embalagem> embalagens, LocalDateTime data) {
         this.id = id;
         this.usuarioOrigem = usuarioOrigem;
         this.usuarioDestino = usuarioDestino;
-        this.embalagem = embalagem;
+        this.embalagens = embalagens;
         this.data = data;
     }
 
@@ -65,12 +66,12 @@ public class Movimentacao {
         this.usuarioDestino = usuarioDestino;
     }
 
-    public Embalagem getEmbalagem() {
-        return embalagem;
+    public List<Embalagem> getEmbalagens() {
+        return embalagens;
     }
 
-    public void setEmbalagem(Embalagem embalagem) {
-        this.embalagem = embalagem;
+    public void setEmbalagens(List<Embalagem> embalagens) {
+        this.embalagens = embalagens;
     }
 
     public LocalDateTime getData() {
@@ -89,13 +90,13 @@ public class Movimentacao {
         return Objects.equals(id, that.id) &&
                 Objects.equals(usuarioOrigem, that.usuarioOrigem) &&
                 Objects.equals(usuarioDestino, that.usuarioDestino) &&
-                Objects.equals(embalagem, that.embalagem) &&
+                Objects.equals(embalagens, that.embalagens) &&
                 Objects.equals(data, that.data);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, usuarioOrigem, usuarioDestino, embalagem, data);
+        return Objects.hash(id, usuarioOrigem, usuarioDestino, embalagens, data);
     }
 
     @Override
@@ -104,8 +105,20 @@ public class Movimentacao {
                 "id=" + id +
                 ", usuarioOrigem=" + usuarioOrigem +
                 ", usuarioDestino=" + usuarioDestino +
-                ", embalagem=" + embalagem +
+                ", embalagens=" + embalagens +
                 ", data=" + data +
                 '}';
+    }
+
+    public Pontuacao calculaPontuacao() {
+        var pontos = embalagens.stream()
+                .map(Embalagem::calculaPontos)
+                .reduce(.0, Double::sum);
+
+        var pontuacao = new Pontuacao(null, usuarioOrigem, pontos);
+
+        usuarioOrigem.adicionaPontuacao(pontuacao);
+
+        return pontuacao;
     }
 }
