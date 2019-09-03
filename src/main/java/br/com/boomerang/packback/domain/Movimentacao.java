@@ -2,8 +2,8 @@ package br.com.boomerang.packback.domain;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Movimentacao {
@@ -22,7 +22,11 @@ public class Movimentacao {
     private Usuario usuarioDestino;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Embalagem> embalagens;
+    @JoinTable(
+        name = "movimentacao_embalagem",
+        joinColumns = @JoinColumn(name = "movimentacao_id"),
+        inverseJoinColumns = @JoinColumn(name = "embalagem_id"))
+    private Set<Embalagem> embalagens;
 
     private LocalDateTime data;
 
@@ -30,7 +34,7 @@ public class Movimentacao {
     }
 
     public Movimentacao(
-            Long id, Usuario usuarioOrigem, Usuario usuarioDestino, List<Embalagem> embalagens, LocalDateTime data) {
+            Long id, Usuario usuarioOrigem, Usuario usuarioDestino, Set<Embalagem> embalagens, LocalDateTime data) {
         this.id = id;
         this.usuarioOrigem = usuarioOrigem;
         this.usuarioDestino = usuarioDestino;
@@ -66,11 +70,11 @@ public class Movimentacao {
         this.usuarioDestino = usuarioDestino;
     }
 
-    public List<Embalagem> getEmbalagens() {
+    public Set<Embalagem> getEmbalagens() {
         return embalagens;
     }
 
-    public void setEmbalagens(List<Embalagem> embalagens) {
+    public void setEmbalagens(Set<Embalagem> embalagens) {
         this.embalagens = embalagens;
     }
 
@@ -120,5 +124,10 @@ public class Movimentacao {
         usuarioOrigem.adicionaPontuacao(pontuacao);
 
         return pontuacao;
+    }
+
+    public void insereData() {
+        if(this.data == null)
+            this.data = LocalDateTime.now();
     }
 }

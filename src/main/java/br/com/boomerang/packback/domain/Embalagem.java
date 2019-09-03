@@ -1,7 +1,10 @@
 package br.com.boomerang.packback.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Embalagem {
@@ -20,10 +23,16 @@ public class Embalagem {
 
     private Double peso;
 
+    @ManyToMany(mappedBy = "embalagens", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private Set<Movimentacao> movimentacoes;
+
     public Embalagem() {
     }
 
-    public Embalagem(Long id, TipoEmbalagem tipo, String descricao, Double volume, Double peso) {
+    public Embalagem(
+            Long id, TipoEmbalagem tipo, String descricao,
+            Double volume, Double peso, Set<Movimentacao> movimentacoes) {
         this.id = id;
         this.tipo = tipo;
         this.descricao = descricao;
@@ -69,6 +78,14 @@ public class Embalagem {
 
     public void setPeso(Double peso) {
         this.peso = peso;
+    }
+
+    public Set<Movimentacao> getMovimentacoes() {
+        return movimentacoes;
+    }
+
+    public void setMovimentacoes(Set<Movimentacao> movimentacoes) {
+        this.movimentacoes = movimentacoes;
     }
 
     @Override
