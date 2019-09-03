@@ -1,0 +1,17 @@
+{
+  "id": null,
+  "embalagens": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    }
+  ],
+  "usuarioOrigem": {
+    "id": 1
+  },
+  "usuarioDestino": {
+    "id": 2
+  }
+}
