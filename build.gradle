@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'br.com.boomerang'
-version = '0.0.3'
+version = '0.0.4'
 sourceCompatibility = '12'
 
 repositories {
