@@ -1,7 +1,7 @@
 version: '3'
 services:
   pg-packback-db:
-    image: pg-packback-db:v0.0.2
+    image: pg-packback-db:v0.0.3
     container_name: pg-packback-db
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -9,7 +9,7 @@ services:
       - packbacknet
 
   packback:
-    image: packback:v0.0.3
+    image: packback:v0.0.4
     container_name: packback
     environment:
       - SPRING_PROFILES_ACTIVE=docker
