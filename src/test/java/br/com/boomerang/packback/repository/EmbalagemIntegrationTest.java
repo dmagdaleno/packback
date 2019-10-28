@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,7 +39,7 @@ public class EmbalagemIntegrationTest {
         var tipo = new TipoEmbalagem(null, "Lata", Material.METAL);
         var tipoSalvo = tipoEmbalagemRepositorio.save(tipo);
 
-        var embalagem = new Embalagem(null, tipoSalvo, "Lata Coca-Cola", 350.0, 10.0);
+        var embalagem = new Embalagem(null, tipoSalvo, "Lata Coca-Cola", 350.0, 10.0, Collections.emptySet());
 
         repositorio.save(embalagem);
 

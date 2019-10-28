@@ -12,6 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 
+import java.util.Collections;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -43,7 +45,7 @@ public class MovimentacaoServiceIntegrationTest {
     public void deveCadastrarMovimentacaoEAtribuirPontosAoUsuarioConsumidor() {
         assertThat(consumidor.getPontos()).isEqualTo(.0);
 
-        var movimentacaoSalva = service.movimenta(embalagem, consumidor, produtor);
+        var movimentacaoSalva = service.movimenta(Collections.singleton(embalagem), consumidor, produtor);
 
         var movimentacao = service.buscaPorId(movimentacaoSalva.getId());
 

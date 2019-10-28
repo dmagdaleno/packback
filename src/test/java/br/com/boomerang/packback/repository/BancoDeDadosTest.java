@@ -8,6 +8,7 @@ import br.com.boomerang.packback.domain.builder.UsuarioBuilderUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -44,7 +45,7 @@ public class BancoDeDadosTest {
 
         var tipo = new TipoEmbalagem(null, "Lata", Material.METAL);
         var tipoSalvo = tipoEmbalagemRepository.save(tipo);
-        var embalagem = new Embalagem(null, tipoSalvo, "Lata Coca-Cola", 350.0, 10.0);
+        var embalagem = new Embalagem(null, tipoSalvo, "Lata Coca-Cola", 350.0, 10.0, Collections.emptySet());
         this.embalagem = embalagemRepository.save(embalagem);
 
         return List.of(consumidor, produtor, embalagem);

@@ -5,6 +5,8 @@ import br.com.boomerang.packback.domain.Material;
 import br.com.boomerang.packback.domain.TipoEmbalagem;
 import org.junit.Test;
 
+import java.util.Collections;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RegraCalculoTest {
@@ -15,7 +17,7 @@ public class RegraCalculoTest {
     @Test
     public void deveCalcularPontosParaEmbalagemDeMetal() {
         var tipo = new TipoEmbalagem(null, "Lata", Material.METAL);
-        var embalagem = new Embalagem(null, tipo, "Lata Coca-Cola", volume, peso);
+        var embalagem = new Embalagem(null, tipo, "Lata Coca-Cola", volume, peso, Collections.emptySet());
 
         assertThat(embalagem.calculaPontos()).isEqualTo(volume*peso*0.9);
     }
@@ -23,7 +25,7 @@ public class RegraCalculoTest {
     @Test
     public void deveCalcularPontosParaEmbalagemDeVidro() {
         var tipo = new TipoEmbalagem(null, "Garrafa", Material.VIDRO);
-        var embalagem = new Embalagem(null, tipo, "Garrafa Coca-Cola", volume, peso);
+        var embalagem = new Embalagem(null, tipo, "Garrafa Coca-Cola", volume, peso, Collections.emptySet());
 
         assertThat(embalagem.calculaPontos()).isEqualTo(volume*peso*0.7);
     }
@@ -31,7 +33,7 @@ public class RegraCalculoTest {
     @Test
     public void deveCalcularPontosParaEmbalagemDePlastico() {
         var tipo = new TipoEmbalagem(null, "Pote", Material.PLASTICO);
-        var embalagem = new Embalagem(null, tipo, "Pote doce de leite", volume, peso);
+        var embalagem = new Embalagem(null, tipo, "Pote doce de leite", volume, peso, Collections.emptySet());
 
         assertThat(embalagem.calculaPontos()).isEqualTo(volume*peso*0.6);
     }
@@ -39,7 +41,7 @@ public class RegraCalculoTest {
     @Test
     public void deveCalcularPontosParaEmbalagemDePapel() {
         var tipo = new TipoEmbalagem(null, "Bloco de folhas", Material.PAPEL);
-        var embalagem = new Embalagem(null, tipo, "Bloco de folhas de papel", volume, peso);
+        var embalagem = new Embalagem(null, tipo, "Bloco de folhas de papel", volume, peso, Collections.emptySet());
 
         assertThat(embalagem.calculaPontos()).isEqualTo(volume*peso*0.5);
     }
