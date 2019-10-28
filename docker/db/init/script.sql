@@ -497,10 +497,10 @@ INSERT INTO public.embalagem(id, descricao, peso, volume, tipo_id)
 VALUES (nextval('public.embalagem_id_seq'), 'Lata refrigerante', 0.01, 350, 1);
 
 INSERT INTO public.embalagem(id, descricao, peso, volume, tipo_id)
-VALUES (nextval('public.embalagem_id_seq'), 'Lata óleo', 0.025, 500, 1);
+VALUES (nextval('public.embalagem_id_seq'), 'Caixa papelão', 0.05, 3000, 2);
 
 INSERT INTO public.embalagem(id, descricao, peso, volume, tipo_id)
-VALUES (nextval('public.embalagem_id_seq'), 'Caixa papelão', 0.05, 3000, 2);
+VALUES (nextval('public.embalagem_id_seq'), 'Lata óleo', 0.025, 500, 1);
 
 INSERT INTO public.embalagem(id, descricao, peso, volume, tipo_id)
 VALUES (nextval('public.embalagem_id_seq'), 'Bloco de folhas', 0.09, 1000, 2);
@@ -547,10 +547,10 @@ INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
 VALUES (nextval('public.produto_id_seq'), 'Suco Aurora Garrafa', 8, 4);
 
 INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
-VALUES (nextval('public.produto_id_seq'), 'Pão de queijo Caixa', 3, 1);
+VALUES (nextval('public.produto_id_seq'), 'Pão de queijo Caixa', 2, 1);
 
 INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
-VALUES (nextval('public.produto_id_seq'), 'Leite Caixa', 3, 2);
+VALUES (nextval('public.produto_id_seq'), 'Leite Caixa', 2, 2);
 
 INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
 VALUES (nextval('public.produto_id_seq'), 'Milho Lata', 1, 3);
@@ -569,10 +569,10 @@ INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
 VALUES (nextval('public.produto_id_seq'), 'Suco Aurora Garrafa', 8, 8);
 
 INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
-VALUES (nextval('public.produto_id_seq'), 'Pão de queijo Caixa', 3, 5);
+VALUES (nextval('public.produto_id_seq'), 'Pão de queijo Caixa', 2, 5);
 
 INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
-VALUES (nextval('public.produto_id_seq'), 'Leite Caixa', 3, 6);
+VALUES (nextval('public.produto_id_seq'), 'Leite Caixa', 2, 6);
 
 INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
 VALUES (nextval('public.produto_id_seq'), 'Milho Lata', 1, 7);
