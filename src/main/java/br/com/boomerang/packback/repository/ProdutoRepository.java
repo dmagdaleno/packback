@@ -7,4 +7,7 @@ import java.util.Collection;
 
 public interface ProdutoRepository extends CrudRepository<Produto, Long> {
     Collection<Produto> findAllByRegiaoId(Long regiaoId);
+
+    @Query("select p from Produto p where p.descricao like %:descricao%")
+    Collection<Produto> findAllByDescricao(String descricao);
 }
