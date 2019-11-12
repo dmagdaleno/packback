@@ -1,6 +1,7 @@
 package br.com.boomerang.packback.repository;
 
 import br.com.boomerang.packback.domain.Produto;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Collection;
