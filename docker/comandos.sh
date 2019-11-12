@@ -5,6 +5,7 @@ cd ~/work/packback
 git pull
 
 export JAVA_HOME=/home/diegommagdaleno/tools/jdk-12.0.1+12
+export JAVA_HOME=/home/dmagdaleno/tools/jdk-12.0.2+10
 
 docker build -t pg-packback-db:v0.0.3 docker/db/
 
