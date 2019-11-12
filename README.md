@@ -7,7 +7,7 @@ API para cadastro e consultas de materiais recicláveis disponíveis para coleta
 Documentação completa da API:
 
 ```
-http://35.247.211.12:8080/packback/api/swagger-ui.html
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/swagger-ui.html
 ```
 
 ### Principais endpoints
@@ -16,29 +16,29 @@ http://35.247.211.12:8080/packback/api/swagger-ui.html
 
 Recupera todas as movimentações realizadas (`GET`):
 ```
-http://35.247.211.12:8080/packback/api/movimentacoes
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/movimentacoes
 ```
 
 Recupera uma movimentação específica por `id` (`GET`):
 ```
-http://35.247.211.12:8080/packback/api/movimentacoes/{id}
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/movimentacoes/{id}
 ```
 
 Recupera todas as movimentações realizadas por um usuário (`GET`):
 ```
-http://35.247.211.12:8080/packback/api/movimentacoes/usuario/{idUsuario}
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/movimentacoes/usuario/{idUsuario}
 ```
 
 Registra uma nova movimentação (`POST`):
 ```
-http://35.247.211.12:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
 ```
 
 #### Pontuação
 
 Recupera todas as pontuações de um usuário pelo seu `id` (`GET`):
 ```
-http://35.247.211.12:8080/packback/api/pontuacoes/{idUsuario}
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/pontuacoes/{idUsuario}
 ```
 
 ## Build e Execução Local
