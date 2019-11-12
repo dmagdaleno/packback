@@ -1,7 +1,11 @@
 package br.com.boomerang.packback.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class Produto {
@@ -17,6 +21,10 @@ public class Produto {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "regiao_id")
     private Regiao regiao;
+
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private Set<Tag> tags;
 
     private String descricao;
 
@@ -42,6 +50,14 @@ public class Produto {
 
     public void setRegiao(Regiao regiao) {
         this.regiao = regiao;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     public String getDescricao() {
