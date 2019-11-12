@@ -9,7 +9,7 @@ services:
       - packbacknet
 
   packback:
-    image: packback:v0.0.5
+    image: packback:v0.0.6
     container_name: packback
     environment:
       - SPRING_PROFILES_ACTIVE=docker

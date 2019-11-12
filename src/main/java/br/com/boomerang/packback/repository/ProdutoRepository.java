@@ -5,10 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Collection;
+import java.util.Set;
 
 public interface ProdutoRepository extends CrudRepository<Produto, Long> {
     Collection<Produto> findAllByRegiaoId(Long regiaoId);
 
-    @Query("select p from Produto p where p.descricao like %:descricao%")
-    Collection<Produto> findAllByDescricao(String descricao);
+    @Query("SELECT p FROM Produto p INNER JOIN p.tags t WHERE t.descricao in (:tags)")
+    Collection<Produto> findAllByTags(Set<String> tags);
 }

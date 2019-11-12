@@ -13,7 +13,7 @@ docker build -t pg-packback-db:v0.0.4 docker/db/
 
 cp build/libs/packback*.jar docker/packback.jar
 
-docker build -t packback:v0.0.5 -t packback:latest docker/
+docker build -t packback:v0.0.6 -t packback:latest docker/
 
 docker-compose -f docker/docker-compose.yaml down
 

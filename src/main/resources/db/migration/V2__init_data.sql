@@ -101,3 +101,24 @@ VALUES (nextval('public.produto_id_seq'), 'Milho Lata', 1, 7);
 
 INSERT INTO public.produto(id, descricao, embalagem_id, regiao_id)
 VALUES (nextval('public.produto_id_seq'), 'Molho de tomate Lata', 1, 7);
+
+-- Usuarios
+-- Consumidor
+
+INSERT INTO public.login(id, senha) VALUES (nextval('public.login_id_seq'), '123456');
+
+INSERT INTO public.usuario(id, cnpj, cpf, email, nome, razao_social, tipo, login_id)
+VALUES(nextval('public.usuario_id_seq'), null, '00100200304', 'usuario@teste.com', 'Usuario de Teste', null, 0, 1);
+
+INSERT INTO public.endereco(id, bairro, cep, cidade, estado, numero, pais, rua, id_usuario)
+VALUES(nextval('public.endereco_id_seq'), 'Nome do Bairro', '00102-003', 'Nome da Cidade', 'Nome do Estado', 570, 'BR', 'Nome da Rua', 1);
+
+-- Produtor
+
+INSERT INTO public.login(id, senha) VALUES (nextval('public.login_id_seq'), '123456');
+
+INSERT INTO public.usuario(id, cnpj, cpf, email, nome, razao_social, tipo, login_id)
+VALUES(nextval('public.usuario_id_seq'), '001002003000145', '00100200345', 'produtor@empresa.com.br', 'Dono da Empresa', 'Nome da Empresa', 1, 2);
+
+INSERT INTO public.endereco(id, bairro, cep, cidade, estado, numero, pais, rua, id_usuario)
+VALUES(nextval('public.endereco_id_seq'), 'Nome do Bairro', '00102-003', 'Nome da Cidade', 'Nome do Estado', 720, 'BR', 'Nome da Rua', 2);

@@ -74,7 +74,7 @@ docker build -t pg-packback-db:v0.0.4 docker/db/
 
 Construir imagem docker da aplicação
 ```
-docker build -t packback:v0.0.5 -t packback:latest docker/
+docker build -t packback:v0.0.6 -t packback:latest docker/
 ```
 
 ### Execução (Docker Compose)
