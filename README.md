@@ -44,14 +44,42 @@ http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/movimentacoes/u
 
 Registra uma nova movimentação (`POST`):
 ```
-http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/movimentacoes/movimenta/{idEmbalagem}/de/{idUsuarioOrigem}/para/{idUsuarioDestino}
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/movimentacoes/movimenta
 ```
+Obs.: Detalhes sobre o corpo da requisição no `Swagger`
 
 #### Pontuação
 
 Recupera todas as pontuações de um usuário pelo seu `id` (`GET`):
 ```
 http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/pontuacoes/{idUsuario}
+```
+
+#### Identificação de produtos por região
+
+Esse endpoint é utilizado para identificar produtos através de beacons.
+
+Recupera produtos pelo `id` da região (`GET`):
+```
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/produtos/regiao/{idRegiao}
+```
+
+#### Identificação de produtos por tags
+
+Esse endpoint é utilizado para identificar produtos através de tags 
+geradas a partir de serviços de reconhecimento de imagem.
+
+Recupera produtos por `tags` (`POST`):
+```
+http://packback.brazilsouth.cloudapp.azure.com:8080/packback/api/produtos/identifica
+```
+Corpo:
+```
+{
+  "tags": [
+    "tag"
+  ]
+}
 ```
 
 ## Build e Execução Local
