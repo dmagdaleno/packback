@@ -1,6 +1,19 @@
 # PackBack - API
 
-API para cadastro e consultas de materiais recicláveis disponíveis para coleta do sistema PackBack.
+API para cadastro e consulta de materiais recicláveis e registro de movimentações entre 
+empresas que produzem ou distribuem esses materiais e seus consumidores.
+
+Cada movimentação do consumidor para o produtor deve gerar uma pontuação para o consumidor
+que posteriormente pode utilizar essa pontuação para resgate de Milhas ou Cash Back.
+
+## Tecnologias utilizadas
+
+- Java (JDK 12)
+- Spring Boot (2.1.4.RELEASE)
+- Gradle (5.4.1)
+- Swagger (2.9.2)
+- PostgreSQL (9.4.20)
+- Flyway (5.2.4)
 
 ## Acesso em Cloud
 
