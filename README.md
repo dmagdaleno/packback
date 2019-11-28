@@ -11,6 +11,7 @@ que posteriormente pode utilizar essa pontuação para resgate de Milhas ou Cash
 - Java (JDK 12)
 - Gradle (5.4.1)
 - Spring Boot (2.1.4.RELEASE)
+- Spring Web/MVC (5.1.6.RELEASE)
 - Spring Data JPA (2.1.6.RELEASE)
 - Swagger (2.9.2)
 - PostgreSQL (9.4.20)
